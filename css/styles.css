@@ -1795,3 +1795,181 @@ html.snap-page .page {
   .nav-socials { display: none; }
   .hero-title { font-size: 2rem; }
 }
+
+/* =========================================
+   PHOTO LIGHTBOX
+   ========================================= */
+.photo-expandable {
+  cursor: zoom-in;
+}
+
+.photo-lightbox-img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 12px;
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 32px 90px rgba(0,0,0,0.75), 0 0 80px var(--accent-glow-lg);
+  display: block;
+  object-fit: contain;
+  transform: scale(0.93);
+  opacity: 0;
+  transition:
+    transform 0.32s cubic-bezier(0.34, 1.4, 0.64, 1),
+    opacity 0.28s ease;
+}
+
+.modal-overlay.open .photo-lightbox-img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* =========================================
+   CARD EXPAND / MODAL
+   ========================================= */
+.showcase-card {
+  cursor: pointer;
+}
+
+/* Expand icon — top-right corner, appears on hover */
+.showcase-card::after {
+  content: '↗';
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-align: center;
+  line-height: 1.65rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity var(--transition), border-color var(--transition), color var(--transition);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.showcase-card:hover::after {
+  opacity: 1;
+  border-color: var(--border-glow);
+  color: var(--accent-bright);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(8, 0, 16, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.modal-overlay.open { opacity: 1; }
+
+.modal-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 1.1rem;
+  box-shadow: 0 32px 90px rgba(0,0,0,0.75), 0 0 80px var(--accent-glow-lg);
+  width: 96vw;
+  max-width: 1600px;
+  height: 92vh;
+  overflow: hidden;
+  transform: scale(0.93) translateY(16px);
+  opacity: 0;
+  transition:
+    transform 0.32s cubic-bezier(0.34, 1.4, 0.64, 1),
+    opacity 0.28s ease;
+}
+
+.modal-overlay.open .modal-panel {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Image panel inside modal */
+.modal-panel .showcase-img {
+  min-height: unset;
+  height: 100%;
+  max-height: 92vh;
+  border-right: 1px solid var(--border);
+  border-radius: 1.1rem 0 0 1.1rem;
+}
+
+/* Body panel inside modal */
+.modal-panel .showcase-body {
+  padding: 3rem 3rem;
+  overflow-y: auto;
+  justify-content: flex-start;
+  height: 100%;
+  max-height: 92vh;
+}
+
+.modal-panel .showcase-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.modal-panel .showcase-desc,
+.modal-panel .showcase-contrib {
+  font-size: 0.95rem;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  line-height: 1;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+.modal-close:hover {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+  color: var(--accent-bright);
+}
+
+@media (max-width: 750px) {
+  .modal-overlay { padding: 0; align-items: flex-end; }
+  .modal-panel {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+    border-radius: 1.1rem 1.1rem 0 0;
+    transform: scale(1) translateY(100%);
+  }
+  .modal-overlay.open .modal-panel { transform: scale(1) translateY(0); }
+  .modal-panel .showcase-img {
+    min-height: 200px;
+    max-height: 32vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 1.1rem 1.1rem 0 0;
+  }
+  .modal-panel .showcase-body {
+    padding: 1.5rem;
+    max-height: none;
+  }
+}

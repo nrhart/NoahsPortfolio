@@ -97,4 +97,118 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.18 });
     snapSections.forEach(el => snapObs.observe(el));
   }
+
+  // ── Photo lightbox ────────────────────────
+  document.querySelectorAll('.photo-expandable').forEach(img => {
+    const openLightbox = () => {
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+
+      const enlarged = document.createElement('img');
+      enlarged.src = img.src;
+      enlarged.alt = img.alt;
+      enlarged.className = 'photo-lightbox-img';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'modal-close';
+      closeBtn.innerHTML = '&times;';
+      closeBtn.setAttribute('aria-label', 'Close');
+
+      overlay.appendChild(enlarged);
+      overlay.appendChild(closeBtn);
+      document.body.appendChild(overlay);
+      document.body.style.overflow = 'hidden';
+
+      requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+
+      const close = () => {
+        overlay.classList.remove('open');
+        overlay.addEventListener('transitionend', () => {
+          overlay.remove();
+          document.body.style.overflow = '';
+        }, { once: true });
+      };
+
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+      const onEsc = e => {
+        if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onEsc); }
+      };
+      document.addEventListener('keydown', onEsc);
+    };
+
+    img.addEventListener('click', () => openLightbox());
+  });
+
+  // ── Card expand modal ─────────────────────
+  document.querySelectorAll('.showcase-card').forEach(card => {
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', 'Expand project details');
+
+    const openModal = () => {
+      const imgEl  = card.querySelector('.showcase-img');
+      const bodyEl = card.querySelector('.showcase-body');
+
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.setAttribute('role', 'dialog');
+      overlay.setAttribute('aria-modal', 'true');
+
+      const panel = document.createElement('div');
+      panel.className = 'modal-panel';
+
+      if (imgEl)  panel.appendChild(imgEl.cloneNode(true));
+      if (bodyEl) {
+        const bodyClone = bodyEl.cloneNode(true);
+        // Re-trigger iframe loads (cloneNode doesn't reload src)
+        bodyClone.querySelectorAll('iframe').forEach(f => { const s = f.src; f.src = ''; f.src = s; });
+        panel.appendChild(bodyClone);
+      }
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'modal-close';
+      closeBtn.innerHTML = '&times;';
+      closeBtn.setAttribute('aria-label', 'Close');
+      panel.appendChild(closeBtn);
+
+      overlay.appendChild(panel);
+      document.body.appendChild(overlay);
+      document.body.style.overflow = 'hidden';
+
+      // Double rAF ensures transition plays from initial state
+      requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+
+      const close = () => {
+        overlay.classList.remove('open');
+        overlay.addEventListener('transitionend', () => {
+          overlay.remove();
+          document.body.style.overflow = '';
+        }, { once: true });
+      };
+
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+      const onEsc = e => {
+        if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onEsc); }
+      };
+      document.addEventListener('keydown', onEsc);
+    };
+
+    card.addEventListener('click', e => {
+      if (e.target.closest('a, button')) return;
+      openModal();
+    });
+
+    card.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a, button')) {
+        e.preventDefault();
+        openModal();
+      }
+    });
+  });
 });
