@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="snap-page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noah Hart &mdash; Gameplay Programmer | Designer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <a class="nav-logo" href="index.html">Noah Hart<span>.</span></a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-item-projects">
+      <button class="nav-btn" aria-haspopup="true" aria-expanded="false">
+        Projects <span class="arrow">&#9660;</span>
+      </button>
+      <div class="dropdown-menu" role="menu">
+        <a href="projects.html" role="menuitem">
+          <span class="icon">&#128196;</span> All Projects
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="projects/unreal.html" role="menuitem">
+          <img src="images/unrealicon.png" class="nav-icon" alt=""> Unreal Engine
+        </a>
+        <a href="projects/unity.html" role="menuitem">
+          <img src="images/unityicon.png" class="nav-icon" alt=""> Unity
+        </a>
+        <a href="projects/combat.html" role="menuitem">
+          <span class="icon">&#9876;</span> Combat Journal
+        </a>
+        <a href="projects/custom-engine.html" role="menuitem">
+          <span class="icon">&#9881;</span> Custom Engine
+        </a>
+      </div>
+    </li>
+  </ul>
+
+  <div class="nav-socials">
+    <a href="mailto:noahhart.gb@gmail.com" title="Email" aria-label="Email">&#9993;</a>
+    <a href="https://github.com/nrhart" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11.05 11.05 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
+      </svg>
+    </a>
+    <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" title="Itch.io" aria-label="Itch.io">&#127918;</a>
+    <a href="pdfs/resume.pdf" target="_blank" rel="noopener" title="Resume" aria-label="Resume">&#128196;</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="snap-hero fade-in">
+    <img src="images/gamingsquirrel.jfif" alt="" aria-hidden="true" class="hero-bg-squirrel" />
+    <div class="hero-content">
+      <p class="hero-eyebrow">Gameplay Programmer &amp; Designer</p>
+      <h1 class="hero-title">
+        Making games<br />
+        that inspire<br />
+        <span class="highlight">change.</span>
+      </h1>
+      <p class="hero-sub">
+        Technical Designer specializing in combat mechanics, AI behaviors,
+        and modular systems design.
+      </p>
+      <div class="hero-actions">
+        <a href="projects.html" class="btn btn-primary">View Projects &#8594;</a>
+        <a href="about.html" class="btn btn-ghost">About Me</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <a href="https://store.steampowered.com/app/4125300/NoRail/" target="_blank" rel="noopener" class="hero-frame">
+        <img src="images/norail.png" alt="NO RAIL" onerror="this.style.display='none';" />
+        <div class="hero-frame-badge">&#9670; NO RAIL &mdash; Wishlist on Steam &#8599;</div>
+      </a>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-indicator-line"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT 01 — NO RAIL ===================== -->
+  <section class="project-snap" data-slide="left">
+    <div class="ps-img">
+      <img src="images/norail.png" alt="NO RAIL" style="object-fit: contain; transform: scale(0.8);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="ps-img-placeholder" style="display:none;">&#9670;</div>
+    </div>
+    <div class="ps-content">
+      <div class="ps-num">01 &mdash; Unreal Engine 5</div>
+      <div class="ps-title">NO RAIL</div>
+      <div class="ps-meta">Lead Engineer &bull; Steam &bull; 2025&ndash;2026</div>
+      <div class="ps-desc">
+        Thesis-scale on-rails shooter built with a team of 15. I served as Lead Engineer &mdash;
+        designed and implemented the core encounter systems, architected modular gameplay
+        systems, and led sprint planning through shipping on Steam.
+      </div>
+      <div class="tag-list">
+        <span class="tag">UE5</span>
+        <span class="tag">C++</span>
+        <span class="tag">Lead Engineer</span>
+        <span class="tag">Steam</span>
+      </div>
+      <div class="ps-links">
+        <a href="https://store.steampowered.com/app/4125300/NoRail/" target="_blank" rel="noopener" class="btn btn-primary">View on Steam &#8599;</a>
+        <a href="projects/unreal.html" class="btn btn-ghost">Details &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT 02 — PET FISH ===================== -->
+  <section class="project-snap" data-slide="right">
+    <div class="ps-content">
+      <div class="ps-num">02 &mdash; Unreal Engine 5</div>
+      <div class="ps-title">Pet Fish<br />Simulator</div>
+      <div class="ps-meta">Solo Project &bull; University of Utah</div>
+      <div class="ps-desc">
+        A modular encounter management system where level flow and environments are
+        generated procedurally &mdash; reproducible yet varied runs using a seed-driven
+        pipeline combining deterministic and stochastic techniques.
+      </div>
+      <div class="tag-list">
+        <span class="tag">UE5</span>
+        <span class="tag">Procedural Gen</span>
+        <span class="tag">AI</span>
+        <span class="tag">Systems Design</span>
+      </div>
+      <div class="ps-links">
+        <a href="projects/unreal.html" class="btn btn-primary">Details &#8594;</a>
+        <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" class="btn btn-ghost">&#127918; Itch.io &#8599;</a>
+      </div>
+    </div>
+    <div class="ps-img">
+      <img src="images/fishbowl.png" alt="Pet Fish Simulator" style="object-position: right center;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="ps-img-placeholder" style="display:none;">&#128032;</div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT 03 — ROCKIN DERBY ===================== -->
+  <section class="project-snap" data-slide="left">
+    <div class="ps-img">
+      <img src="images/rockinderby.png" alt="Rockin Derby" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="ps-img-placeholder" style="display:none;">&#9651;</div>
+    </div>
+    <div class="ps-content">
+      <div class="ps-num">03 &mdash; Unity</div>
+      <div class="ps-title">Rockin Derby</div>
+      <div class="ps-meta">Hardware Engineer &bull; Alt Control &bull; Indiecade Nominee &bull; 2024&ndash;2025</div>
+      <div class="ps-desc">
+        A 6-player kart racer where you race by rocking a horse and steer by rotating
+        its head. I built the hardware interface, Bluetooth integration, UI, and core
+        gameplay loop. Nominated at Indiecade.
+      </div>
+      <div class="tag-list">
+        <span class="tag">Unity</span>
+        <span class="tag">C#</span>
+        <span class="tag">Alt Control</span>
+        <span class="tag">Indiecade Nominee</span>
+      </div>
+      <div class="ps-links">
+        <a href="projects/unity.html" class="btn btn-primary">Details &#8594;</a>
+        <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" class="btn btn-ghost">&#127918; Itch.io &#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT 04 — CUSTOM ENGINE ===================== -->
+  <section class="project-snap" data-slide="right">
+    <div class="ps-content">
+      <div class="ps-num">04 &mdash; Custom Engine</div>
+      <div class="ps-title">Graphics Engine<br />Development</div>
+      <div class="ps-meta">Solo &bull; University of Utah &bull; C++</div>
+      <div class="ps-desc">
+        Modified an existing graphics engine to support platform-independent rendering
+        through abstraction interfaces. Developed a real-time game within the engine
+        to validate rendering, input, physics, UI, and audio — built in a sprint-based
+        studio workflow.
+      </div>
+      <div class="tag-list">
+        <span class="tag">C++</span>
+        <span class="tag">OpenGL</span>
+        <span class="tag">Rendering</span>
+        <span class="tag">Platform Abstraction</span>
+      </div>
+      <div class="ps-links">
+        <a href="projects/custom-engine.html" class="btn btn-primary">Details &#8594;</a>
+      </div>
+    </div>
+    <div class="ps-img">
+      <img src="images/flappysquirrel.png" alt="Graphics Engine" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="ps-img-placeholder" style="display:none;">&#9881;</div>
+    </div>
+  </section>
+
+  <!-- ===================== REST OF PAGE ===================== -->
+  <div class="snap-rest">
+
+    <!-- Browse by Engine -->
+    <section class="fade-in" style="padding-top:4rem;">
+      <div class="section-header">
+        <p class="section-tag">Browse by Engine</p>
+        <h2 class="section-title">Project Categories</h2>
+        <p class="section-desc">
+          From UE5 and Unity games to combat systems and a hand-rolled engine.
+        </p>
+      </div>
+
+      <div class="card-grid">
+        <a href="projects/unreal.html" class="card">
+          <img src="images/unrealicon.png" class="card-icon-img" alt="Unreal Engine">
+          <div class="card-title">Unreal Engine</div>
+          <div class="card-desc">
+            Modular gameplay systems, AI behaviors, and combat logic built in UE5 with C++.
+            Includes NO RAIL &mdash; shipped on Steam.
+          </div>
+          <div class="tag-list">
+            <span class="tag">C++</span>
+            <span class="tag">Blueprints</span>
+            <span class="tag">UE5</span>
+          </div>
+          <div class="card-arrow">Explore &#8594;</div>
+        </a>
+
+        <a href="projects/unity.html" class="card">
+          <img src="images/unityicon.png" class="card-icon-img" alt="Unity">
+          <div class="card-title">Unity</div>
+          <div class="card-desc">
+            Rapid gameplay prototypes and alt-control experiments, including an
+            Indiecade-nominated kart racer built on a rocking horse.
+          </div>
+          <div class="tag-list">
+            <span class="tag">C#</span>
+            <span class="tag">DOTS</span>
+            <span class="tag">Shader Graph</span>
+          </div>
+          <div class="card-arrow">Explore &#8594;</div>
+        </a>
+
+        <a href="projects/combat.html" class="card">
+          <div class="card-icon">&#9876;</div>
+          <div class="card-title">Combat Journal</div>
+          <div class="card-desc">
+            Deep-dive into hit detection, combo logic, animation state machines,
+            and feel-first design.
+          </div>
+          <div class="tag-list">
+            <span class="tag">Hit Detection</span>
+            <span class="tag">Animation</span>
+            <span class="tag">AI</span>
+          </div>
+          <div class="card-arrow">Explore &#8594;</div>
+        </a>
+
+        <a href="projects/custom-engine.html" class="card">
+          <div class="card-icon">&#9881;</div>
+          <div class="card-title">Custom Engine</div>
+          <div class="card-desc">
+            Hand-rolled rendering, ECS architecture, and low-level systems
+            built from scratch in C++.
+          </div>
+          <div class="tag-list">
+            <span class="tag">OpenGL</span>
+            <span class="tag">ECS</span>
+            <span class="tag">C++</span>
+          </div>
+          <div class="card-arrow">Explore &#8594;</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stat-row fade-in">
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Games Published</div>
+        <div class="stat-sub">Itch.io &amp; Steam</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Engines Used</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Years Coding</div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-strip fade-in">
+      <h2>Let&rsquo;s Connect</h2>
+      <p>Open to opportunities, collaborations, and interesting conversations.</p>
+      <div class="contact-links">
+        <a href="mailto:noahhart.gb@gmail.com" class="btn btn-primary">&#9993; Email Me</a>
+        <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/nrhart" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+        <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" class="btn btn-ghost">&#127918; Itch.io</a>
+        <a href="pdfs/resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">&#128196; Resume</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Noah Hart. Built with HTML &amp; CSS.</p>
+      <div class="footer-socials">
+        <a href="mailto:noahhart.gb@gmail.com">Email</a>
+        <a href="https://github.com/nrhart" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+
+  </div><!-- /snap-rest -->
+
+</div><!-- /page -->
+
+<script src="js/main.js"></script>
+</body>
+</html>

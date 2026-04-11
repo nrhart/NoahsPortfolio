@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Engine &mdash; Noah Hart</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <a class="nav-logo" href="../index.html">Noah Hart<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li class="nav-item-projects">
+      <button class="nav-btn active" aria-haspopup="true" aria-expanded="false">
+        Projects <span class="arrow">&#9660;</span>
+      </button>
+      <div class="dropdown-menu" role="menu">
+        <a href="../projects.html" role="menuitem"><span class="icon">&#128196;</span> All Projects</a>
+        <div class="dropdown-divider"></div>
+        <a href="unreal.html" role="menuitem"><img src="../images/../images/unrealicon.png" class="nav-icon" alt=""> Unreal Engine</a>
+        <a href="unity.html" role="menuitem"><img src="../images/../images/unityicon.png" class="nav-icon" alt=""> Unity</a>
+        <a href="combat.html" role="menuitem"><span class="icon">&#9876;</span> Combat Journal</a>
+        <a href="custom-engine.html" role="menuitem"><span class="icon">&#9881;</span> Custom Engine</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-socials">
+    <a href="mailto:noahhart.gb@gmail.com" title="Email">&#9993;</a>
+    <a href="https://github.com/nrhart" target="_blank" rel="noopener" title="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11.05 11.05 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener" title="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+    </a>
+    <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" title="Itch.io">&#127918;</a>
+    <a href="../pdfs/resume.pdf" target="_blank" rel="noopener" title="Resume">&#128196;</a>
+  </div>
+</nav>
+
+<!-- ===================== PAGE ===================== -->
+<div class="page">
+
+  <div class="project-hero fade-in">
+    <div class="project-hero-badge">&#9881; Custom Engine &amp; Graphics</div>
+    <h1>Custom Engine &amp; Graphics Projects</h1>
+    <p>
+      Platform-independent rendering engines, procedural generation systems, and 3D graphics
+      assignments &mdash; all built from scratch in C++ or hosted as live interactive demos.
+    </p>
+  </div>
+
+  <div class="project-showcase fade-in">
+
+    <!-- Graphics Engine -->
+    <div class="showcase-card">
+      <div class="showcase-img">
+        <img src="../images/flappysquirrel.png" alt="Graphics Engine" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="showcase-img-placeholder" style="display:none;">&#9881;</div>
+      </div>
+      <div class="showcase-body">
+        <div class="showcase-meta">University of Utah &bull; 2025 &bull; C++</div>
+        <div class="showcase-title">Graphics Engine Development</div>
+        <div class="showcase-contrib">
+          <strong>My Contributions</strong>
+          Engine architecture, platform abstraction layer, rendering pipeline, real-time game built within the engine.
+        </div>
+        <div class="showcase-desc">
+          Modified an existing graphics engine to support platform-independent rendering
+          through abstraction interfaces that decouple platform-specific APIs. Designed and
+          developed a Flappy Bird&ndash;like game within the engine to validate rendering,
+          input, physics, UI, and audio integration. Implemented core gameplay systems
+          including custom physics, collision detection, object scaling, and event-driven
+          audio, and leveraged these systems to build responsive mechanics such as continuous
+          forward movement, procedurally spawned obstacles, and player-controlled flight.
+        </div>
+        <div class="tag-list">
+          <span class="tag">C++</span><span class="tag">OpenGL</span>
+          <span class="tag">Shaders</span><span class="tag">Platform Abstraction</span><span class="tag">Rendering</span>
+        </div>
+        <div class="showcase-links">
+          <a href="https://drive.google.com/file/d/1TaXLB8aDVQfupto05KeBTbqLiSdi4Olw/view" target="_blank" rel="noopener" class="btn btn-primary">&#11015; Download Project</a>
+          <a href="../pdfs/enginesystemwriteup.pdf" target="_blank" rel="noopener" class="btn btn-ghost">&#128196; Engine System Writeup</a>
+          <a href="../pdfs/finalprojectwriteup.pdf" target="_blank" rel="noopener" class="btn btn-ghost">&#128196; Final Project Writeup</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GitHub Pages hosted assignments -->
+  <section class="fade-in" style="padding-top:1rem;">
+    <div class="section-header">
+      <p class="section-tag">Live Demos</p>
+      <h2 class="section-title">Interactive Graphics Projects</h2>
+      <p class="section-desc">
+        3D graphics assignments and procedural generation experiments, playable in-browser via GitHub Pages.
+      </p>
+    </div>
+
+    <div class="project-list">
+
+      <a href="https://nrhart.github.io/3D-Graphics/" target="_blank" rel="noopener" class="project-item">
+        <div class="project-item-icon">&#128438;</div>
+        <div class="project-item-body">
+          <div class="project-item-title">3D Graphics Projects</div>
+          <div class="project-item-desc">
+            A series of 3D graphics programming assignments covering shaders, lighting models,
+            geometry, and rendering techniques. Built progressively over the course, each
+            assignment adding new capabilities to the renderer. All viewable live in-browser.
+          </div>
+          <div class="tag-list" style="margin-top:0.5rem;">
+            <span class="tag">JavaScript</span><span class="tag">OpenGL</span><span class="tag">GLSL</span><span class="tag">Shaders</span>
+          </div>
+        </div>
+        <div class="project-item-arrow">&#8599;</div>
+      </a>
+
+      <a href="https://nrhart.github.io/Procedural-Generation/" target="_blank" rel="noopener" class="project-item">
+        <div class="project-item-icon">&#9881;</div>
+        <div class="project-item-body">
+          <div class="project-item-title">Procedural Generation</div>
+          <div class="project-item-desc">
+            Procedural generation experiments exploring noise functions, terrain generation,
+            dungeon layouts, and generative systems. Interactive demos showcasing different
+            algorithmic approaches to content generation.
+          </div>
+          <div class="tag-list" style="margin-top:0.5rem;">
+            <span class="tag">JavaScript</span><span class="tag">Phaser3</span>
+            <span class="tag">Procedural Gen</span><span class="tag">Noise</span>
+          </div>
+        </div>
+        <div class="project-item-arrow">&#8599;</div>
+      </a>
+
+      <a href="https://nrhart.github.io/CMPM147-FinalProject/" target="_blank" rel="noopener" class="project-item">
+        <div class="project-item-icon">&#127758;</div>
+        <div class="project-item-body">
+          <div class="project-item-title">Procedural Dungeon Generator</div>
+          <div class="project-item-desc">
+            Final capstone project for the Expressive Computation / Generative Methods course
+            at UC Santa Cruz. A generative interactive experience combining multiple procedural
+            techniques developed throughout the semester.
+          </div>
+          <div class="tag-list" style="margin-top:0.5rem;">
+            <span class="tag">JavaScript</span><span class="tag">Generative</span>
+            <span class="tag">Interactive</span><span class="tag">UCSC</span>
+          </div>
+        </div>
+        <div class="project-item-arrow">&#8599;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="contact-strip fade-in">
+    <h2>Let&rsquo;s Connect</h2>
+    <p>Open to opportunities, collaborations, and interesting conversations.</p>
+    <div class="contact-links">
+      <a href="mailto:noahhart.gb@gmail.com" class="btn btn-primary">&#9993; Email Me</a>
+      <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/nrhart" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" class="btn btn-ghost">&#127918; Itch.io</a>
+      <a href="../pdfs/resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">&#128196; Resume</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Noah. Built with HTML &amp; CSS.</p>
+    <div class="footer-socials">
+      <a href="mailto:noahhart.gb@gmail.com">Email</a>
+      <a href="https://github.com/nrhart" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+</div>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

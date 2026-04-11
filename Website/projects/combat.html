@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Combat Design Journal &mdash; Noah Hart</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav>
+  <a class="nav-logo" href="../index.html">Noah Hart<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li class="nav-item-projects">
+      <button class="nav-btn active" aria-haspopup="true" aria-expanded="false">
+        Projects <span class="arrow">&#9660;</span>
+      </button>
+      <div class="dropdown-menu" role="menu">
+        <a href="../projects.html" role="menuitem"><span class="icon">&#128196;</span> All Projects</a>
+        <div class="dropdown-divider"></div>
+        <a href="unreal.html" role="menuitem"><img src="../images/../images/unrealicon.png" class="nav-icon" alt=""> Unreal Engine</a>
+        <a href="unity.html" role="menuitem"><img src="../images/../images/unityicon.png" class="nav-icon" alt=""> Unity</a>
+        <a href="combat.html" role="menuitem"><span class="icon">&#9876;</span> Combat Journal</a>
+        <a href="custom-engine.html" role="menuitem"><span class="icon">&#9881;</span> Custom Engine</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-socials">
+    <a href="mailto:noahhart.gb@gmail.com" title="Email">&#9993;</a>
+    <a href="https://github.com/nrhart" target="_blank" rel="noopener" title="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.17 1.18a11.05 11.05 0 0 1 2.89-.39c.98 0 1.97.13 2.89.39 2.2-1.49 3.17-1.18 3.17-1.18.62 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener" title="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+    </a>
+    <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" title="Itch.io">&#127918;</a>
+    <a href="../pdfs/resume.pdf" target="_blank" rel="noopener" title="Resume">&#128196;</a>
+  </div>
+</nav>
+
+<!-- ===================== PAGE ===================== -->
+<div class="page">
+
+  <div class="project-hero fade-in">
+    <div class="project-hero-badge">&#9876; Combat Design Journal</div>
+    <h1>Combat Design Journal</h1>
+    <p>
+      Team C(ombat)ANN &mdash; a semester-long deep dive into combat design in UE5.
+      Weekly entries documenting design decisions, individual contributions, iteration,
+      and implementation across 15 weeks.
+    </p>
+  </div>
+
+  <!-- Overview card -->
+  <div class="project-showcase fade-in">
+    <div class="showcase-card">
+      <div class="showcase-img">
+        <img src="../images/combatDesignProject.jpg" alt="C(ombat)ANN" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="showcase-img-placeholder" style="display:none;">&#9876;</div>
+      </div>
+      <div class="showcase-body">
+        <div class="showcase-meta">University of Utah &bull; Spring 2025 &bull; UE5 &bull; Team: Alan, Noah, Nishant</div>
+        <div class="showcase-title">Team C(ombat)ANN</div>
+        <div class="showcase-contrib">
+          <strong>My Contributions</strong>
+          GAS gameplay programming, health &amp; damage systems, camera system, stamina &amp; healing,
+          encounter design, radial UI, and high-polish detail work.
+        </div>
+        <div class="showcase-desc">
+          A semester-long combat tech demo built in UE5 using the Gameplay Ability System.
+          The team of three designed and built a melee combat prototype over 15 weeks &mdash;
+          covering movement, abilities, hit response, VFX, enemy AI, and arena design.
+          The focus throughout: what makes combat feel genuinely satisfying to play.
+        </div>
+        <div class="tag-list">
+          <span class="tag">UE5</span><span class="tag">GAS</span><span class="tag">C++</span>
+          <span class="tag">AI</span><span class="tag">Animation</span><span class="tag">VFX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Journal header -->
+  <section class="fade-in" style="padding-top:1rem; padding-bottom:1rem;">
+    <div class="section-header">
+      <p class="section-tag">Weekly Log</p>
+      <h2 class="section-title">Journal Entries</h2>
+      <p class="section-desc">
+        Design decisions, individual contributions, and iteration notes &mdash; week by week.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== JOURNAL ===================== -->
+  <div class="journal-section">
+    <div class="journal-timeline">
+
+      <!-- ── WEEK 1 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>1</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 1 &bull; Project Kickoff</div>
+          <div class="journal-title">Team Formation &mdash; AR&rsquo;TURA BLADE</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Blending the combat and gameplay of Furi and Hollow Knight with a focus on 2.5D or 3D depending on complexity, with sword combat as the core.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Communicated ideas and references. Discussed how to blend mechanics from different titles to build a strong combat system. Explored using a 3rd-person camera that can switch to 2.5D to manage scope.</li>
+              <li><strong>Noah:</strong> Created assets and set up a new repo on Perforce. Brainstormed ways to combine Furi&rsquo;s melee combat with a 2.5D style akin to Hollow Knight as a scope-down option.</li>
+              <li><strong>Nishant:</strong> Created the initial movement system deviating from the Unreal starter code, including sprinting and crouching animations.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Discussed Furi&rsquo;s design and how it integrates ranged and melee combat to make each fight feel meaningful.</li>
+              <li>Referenced Hollow Knight and Dark Souls for mechanics, encounter design, and enemy difficulty tuning.</li>
+              <li>Still need to scope the project and define the core game loop along with the distribution of mechanics and implementation plans.</li>
+            </ul>
+            <div class="journal-section-label">Implementation</div>
+            <ul>
+              <li>Advanced movement system with sprinting and crouching implemented.</li>
+            </ul>
+            <div class="journal-media-row">
+              <div class="showcase-embed" style="max-width:560px;">
+                <iframe src="https://drive.google.com/file/d/14uGfQxJHX2vQqVn21A-4KdwLGfEtb2te/preview" allow="autoplay" allowfullscreen></iframe>
+              </div>
+              <img src="../images/combatimages/week1.png" alt="Week 1" class="journal-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 2 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>2</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 2 &bull; Core Systems</div>
+          <div class="journal-title">Dash, Health System &amp; GAS Planning</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Task for the week: add a dash mechanic, a sword-to-cube interaction, and a health system.</li>
+              <li>Lost Perforce/Google access &mdash; attributed time slot to game development instead.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Implemented Dash and began looking into VFX to make it feel better.</li>
+              <li><strong>Noah:</strong> Built a simple health and damage system with a Health UI bar. Health packs restore 10 HP; cubes heal over time while the player stands near them. Damage is variable-based. Health capped at 100. Inspired by Dark Souls&rsquo; bonfires &mdash; interactables on the ground to aid scavenging.</li>
+              <li><strong>Nishant:</strong> Added weapon-hits-cube damage interaction and the ability to pick up and equip a weapon using number keys.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Discussed migrating the ability framework to GAS (Gameplay Ability System) for better flexibility and designer control.</li>
+              <li>Outlined the full ability set to implement: Rage Meter, Dash with invincibility frames, Heal/Tank, Slash-Dash, Light Attack combo, alternate RMB attack.</li>
+              <li>Planned lock-on system and attribute fixes (5 charges, heals 40&ndash;60% of max health).</li>
+            </ul>
+            <div class="journal-section-label">Implementation</div>
+            <ul>
+              <li>GAS health system, cooldown/stamina, simple upgrade system, and base combat attacks planned for rollout.</li>
+            </ul>
+            <div class="journal-media-row">
+              <div class="showcase-embed" style="max-width:560px;">
+                <iframe src="https://drive.google.com/file/d/1wQvH0D5_iOx5RW8-wKzOSfVBUfG6bhLM/preview" allow="autoplay" allowfullscreen></iframe>
+              </div>
+              <img src="../images/combatimages/week2.png" alt="Week 2" class="journal-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 3 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>3</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 3 &bull; Animation &amp; Camera</div>
+          <div class="journal-title">Combo Animation, Isometric Camera &amp; Enemy Setup</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Goal: find a combo animation, improve collision testing, and push toward crunch. Most items were on track but not all met the agreed targets.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Implemented Dash and the first dash animation.</li>
+              <li><strong>Noah:</strong> Implemented an isometric camera that toggles between 3rd-person (dev) and isometric view. Got stuck on integrating Hollow Knight-style enemies.</li>
+              <li><strong>Nishant:</strong> Added a combo animation to the character.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Identified the camera as the main blocker &mdash; needed to integrate a first-person-style attack rather than just triggering an animation after the dash.</li>
+              <li>Discussed new camera approach that better integrates into the current attack patterns.</li>
+            </ul>
+            <div class="showcase-embed" style="max-width:560px; margin-top:1.25rem;">
+              <iframe src="https://drive.google.com/file/d/1pOSyrxfpagJ1PWc48yRNl_6JVzSzX6WQ/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 4 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>4</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 4 &bull; Damage &amp; Combat Flow</div>
+          <div class="journal-title">Damage System, Heavy Attack &amp; Multi-Target Collision</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Focus: polish the dash ability, add a LMB heavy attack, and implement a working damage system.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Fixed up the dash &mdash; player now properly enters the combat stage of the dash on activation.</li>
+              <li><strong>Noah:</strong> Implemented a modular damage system designed to be easy to extend as the team adds mechanics.</li>
+              <li><strong>Nishant:</strong> Worked on in-motion collision mapping to connect sword swings with multiple targets simultaneously.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Continued building on damage and movement to push combat closer to a finished feel. Many systems still need polish.</li>
+            </ul>
+            <div class="journal-media-row">
+              <div class="showcase-embed" style="max-width:560px;">
+                <iframe src="https://drive.google.com/file/d/1bucSA_4lszlRy6CsBocDYGRrIIA_h1K6/preview" allow="autoplay" allowfullscreen></iframe>
+              </div>
+              <img src="../images/combatimages/week4.png" alt="Week 4" class="journal-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 5 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>5</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 5 &bull; Game Feel Pass</div>
+          <div class="journal-title">VFX Polish, Health Bars &amp; Crit System</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Simplified remaining systems to address issues carried over from Furi&rsquo;s implementation. Still revamping the camera and working on a clean dash-to-hit transition.</li>
+              <li>Primary focus this week: game feel &mdash; making the player feel like their attacks have real impact.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Polished the dash so movement momentum is preserved; added VFX.</li>
+              <li><strong>Noah:</strong> Fixed the damage system, added health bars on enemies, and added a health dot indicator on targets when hit with a crit.</li>
+              <li><strong>Nishant:</strong> Added proc/updater hooks for future extensions.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Continue polishing dash attacks, movement, hit reactions, damage framing, and crit system for the dash.</li>
+              <li>Still a lot left to finish before the end of the semester.</li>
+            </ul>
+            <div class="showcase-embed" style="max-width:560px; margin-top:1.25rem;">
+              <iframe src="https://drive.google.com/file/d/18UgKi1pMxbmlfUXIFJLOv72heasC5HwQ/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 6 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>6</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 6 &bull; GAS Migration</div>
+          <div class="journal-title">Moving Combos to GAS &amp; Cooldown System</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Decision: migrate the combo framework to GAS. The existing approach wasn&rsquo;t improving feel &mdash; GAS offers better flexibility for ability tuning, cooldowns, and cancellation.</li>
+              <li>Added a condition system to implement ability cooldowns.</li>
+              <li>The dash remains timing-based &mdash; still intended to be design-driven rather than purely mechanical.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Worked on VFX and GAS combat integration.</li>
+              <li><strong>Noah:</strong> Built damage through GAS, implemented dodge-based mechanics.</li>
+              <li><strong>Nishant:</strong> Continued work on melee collision and multi-target sword swing connection.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Camera still needs more work for aiming and target acquisition.</li>
+              <li>Character movement refinement ongoing.</li>
+            </ul>
+            <div class="showcase-embed" style="max-width:560px; margin-top:1.25rem;">
+              <iframe src="https://drive.google.com/file/d/1WcUM0Un3o3mWrtsYoXGufNBqfa79vln1/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 7 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>7</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 7 &bull; Rotation &amp; Attack Polish</div>
+          <div class="journal-title">Spin Attack, GAS Attack Transition &amp; Camera Work</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Continued catching up from Week 6. Added rotation system, polished motion mapping, and addressed player positioning for combat stability.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Converting Dash to GAS; implemented the spin attack ability.</li>
+              <li><strong>Noah:</strong> Camera work &mdash; improving state clarity for when the player picks up a sword and enters combat, making it clearer when hits are registering.</li>
+              <li><strong>Nishant:</strong> Rotation system improvements to make attacks track and feel more intentional.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Completing GAS transition across all attack end states.</li>
+              <li>Adding complexity to attacks, abilities, and enemies as the core loop stabilizes.</li>
+            </ul>
+            <div class="journal-media-row">
+              <div class="showcase-embed" style="max-width:560px;">
+                <iframe src="https://drive.google.com/file/d/1If2n_EprekPmQu7PUkNIpqNzmSC3T5nG/preview" allow="autoplay" allowfullscreen></iframe>
+              </div>
+              <img src="../images/combatimages/week7.png" alt="Week 7" class="journal-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 8 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>8</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 8 &bull; Rage Mode &amp; Healing</div>
+          <div class="journal-title">Rage Mechanic, Radial UI &amp; Alt Attack Chaining</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Caught up to and moved past Week 6&rsquo;s scope.</li>
+              <li>Designed Rage mode: fills a meter that changes Alt attack and regular attack into new combos and effects.</li>
+              <li>Added a healing system inspired by Ghost of Tsushima.</li>
+              <li>Discussed balancing Rage across different enemy densities.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Implemented Rage mechanic and corresponding VFX.</li>
+              <li><strong>Noah:</strong> Implemented the healing system and built a radial UI progress bar to display the healing state.</li>
+              <li><strong>Nishant:</strong> Implemented the Alt attack when ranged &mdash; lets the player teleport/chain between enemies.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Drew inspiration from Furi and Sonic&rsquo;s &ldquo;Chaos Control&rdquo; ability for the Rage mechanic feel.</li>
+              <li>Continued playtesting for bugs &mdash; certain attacks not draining stamina or dealing damage correctly.</li>
+              <li>Experimenting with enemy density, attack damage values, and how Rage shifts the combat balance.</li>
+            </ul>
+            <div class="showcase-embed" style="max-width:560px; margin-top:1.25rem;">
+              <iframe src="https://drive.google.com/file/d/1DzbDnDH3WGhTJX6x0-Cs1dqXbJj0yzkf/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 9 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>9</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 9 &bull; Mastery &amp; Combos</div>
+          <div class="journal-title">Expanding Moves for Depth &amp; Rewarding Mastery</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Focus: expanding current moves to make them feel more rewarding when mastered.</li>
+              <li>Continued work on player positioning for stability in combat.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Working on air-to-air attack interactions.</li>
+              <li><strong>Noah:</strong> Continued camera improvements for combat clarity when entering and exiting attack states.</li>
+              <li><strong>Nishant:</strong> Rotation system refinements; attacks continue to feel more intentional and game-like.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Combo timing refinements &mdash; tightening windows to reward skilled play.</li>
+            </ul>
+            <div class="journal-video-grid">
+              <div class="showcase-embed">
+                <iframe src="https://drive.google.com/file/d/1TSToLgFANvQ28YdkCHCPyYpV6SCDwCUg/preview" allow="autoplay" allowfullscreen></iframe>
+              </div>
+              <div class="showcase-embed">
+                <iframe src="https://drive.google.com/file/d/1-VWuMAObRkxwv7vhq3Lc9IXAsls21obd/preview" allow="autoplay" allowfullscreen></iframe>
+              </div>
+              <div class="showcase-embed">
+                <iframe src="https://drive.google.com/file/d/1FCuCESGeJrX67o05Jmx4AurjISOUu_1k/preview" allow="autoplay" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 10 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num muted">WK<br/>10</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 10 &bull; Break</div>
+          <div class="journal-title">Spring Break &mdash; No Update</div>
+          <div class="journal-content">
+            <p>No development this week.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 11 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num muted">WK<br/>11</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 11 &bull; GDC</div>
+          <div class="journal-title">Game Developers Conference &mdash; No Dev Update</div>
+          <div class="journal-content">
+            <p>Attended GDC. No production update this week.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 12 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>12</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 12 &bull; Final Push</div>
+          <div class="journal-title">Boss Arena, Encounter Design &amp; Full Polish Pass</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Shifted focus to a final boss-battle level: single-player vs. the game world with deep mechanics over broad content.</li>
+              <li>Cooling down on complexity &mdash; polish, system fixup, and making what&rsquo;s there feel complete.</li>
+              <li>Building toward the original first-design vision for the project.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> VFX for Rage and All-Rage attacks.</li>
+              <li><strong>Noah:</strong> Encounter design and high-polish detail &mdash; bystanders, damage tuning, save point placement.</li>
+              <li><strong>Nishant:</strong> Enemy attack polish, VFX.</li>
+            </ul>
+            <div class="journal-section-label">Iteration Process</div>
+            <ul>
+              <li>Called it good on attack building &mdash; shifted fully to polish and feel.</li>
+              <li>Continued iterating on enemies and encounters; adding VFX to make combat feedback land cleanly.</li>
+            </ul>
+            <div class="showcase-embed" style="max-width:560px; margin-top:1.25rem;">
+              <iframe src="https://drive.google.com/file/d/1ZC0cjPzmkXfE7cf776Bq2NicHXLdsPnS/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 14 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>14</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 14 &bull; Final Goals</div>
+          <div class="journal-title">Attack Cancels, Final Mechanics &amp; Detail Pass</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Design</div>
+            <ul>
+              <li>Defined final goals: make all attacks cancellable after the first hit to prevent lock-in and support a down-based combo system.</li>
+              <li>No new mechanics &mdash; focus entirely on making existing systems feel complete.</li>
+            </ul>
+            <div class="journal-section-label">Individual Contributions</div>
+            <ul>
+              <li><strong>Alan:</strong> Final VFX pass.</li>
+              <li><strong>Noah:</strong> Encounter design and high-polish detail &mdash; bystanders, damage, mechanics.</li>
+              <li><strong>Nishant:</strong> Enemy attacks, VFX.</li>
+            </ul>
+            <div class="showcase-embed" style="max-width:560px; margin-top:1.25rem;">
+              <iframe src="https://drive.google.com/file/d/1H7dsinAb-lkfaxhZmAwxQgEtasmlXFTb/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WEEK 15 ── -->
+      <div class="journal-entry">
+        <div class="journal-week">
+          <div class="journal-week-num">WK<br/>15</div>
+        </div>
+        <div class="journal-body">
+          <div class="journal-meta">Week 15 &bull; Tech Demo &amp; Reflection</div>
+          <div class="journal-title">C(ombat)ANN Tech Demo &mdash; Build &amp; Takeaways</div>
+          <div class="journal-content">
+            <div class="journal-section-label">Tech Demo</div>
+            <ul>
+              <li>After a semester of building, playtesting, and iterating, the C(ombat)ANN tech demo is complete and playable end-to-end.</li>
+            </ul>
+            <div class="journal-section-label">Reflection</div>
+            <ul>
+              <li>	Even though we faced a lot of setbacks during this project, our team walked away with valuable experience, 
+                from iteration and development processes to a much deeper understanding of what makes a combat game feel great. 
+                We ran into major issues with Perforce and Unreal that kept us from fully reaching the goals we originally set, 
+                but the knowledge we gained is something we can carry forward into future work. Moving forward, I want to take 
+                what I’ve learned and dive deeper into Unreal’s GAS system combined with C++. Using everything I picked up about combat design, 
+                along with the lessons from all the challenges we hit, I’m planning out a new project that I’ll be working on in my free time. 
+                It’s a way for me not just to fix the flaws from this project but also to build something stronger from the ground up, with everything I know now. 
+                Keep an eye out for Squirrel Souls! </li>
+            </ul>
+            <div class="showcase-embed" style="max-width:560px; margin-top:1.25rem;">
+              <iframe src="https://drive.google.com/file/d/1sxC6qnU5HXue2TL24OXxYd9yItcH7fDR/preview" allow="autoplay" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="contact-strip fade-in">
+    <h2>Let&rsquo;s Connect</h2>
+    <p>Open to opportunities, collaborations, and interesting conversations.</p>
+    <div class="contact-links">
+      <a href="mailto:noahhart.gb@gmail.com" class="btn btn-primary">&#9993; Email Me</a>
+      <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/nrhart" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      <a href="https://nrhart.itch.io/" target="_blank" rel="noopener" class="btn btn-ghost">&#127918; Itch.io</a>
+      <a href="../pdfs/resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">&#128196; Resume</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Noah. Built with HTML &amp; CSS.</p>
+    <div class="footer-socials">
+      <a href="mailto:noahhart.gb@gmail.com">Email</a>
+      <a href="https://github.com/nrhart" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/noah-hart-96124a260/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
