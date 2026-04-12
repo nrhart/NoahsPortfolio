@@ -1074,6 +1074,60 @@ footer p {
   margin-bottom: 0.35rem;
 }
 
+/* Expandable contribution sections */
+.showcase-contrib-wrapper {
+  position: relative;
+}
+
+.showcase-contrib-short {
+  display: block;
+  transition: display 0.3s ease, opacity 0.3s ease;
+}
+
+.contrib-hint {
+  font-size: 0.65rem;
+  color: var(--accent-bright);
+  opacity: 0.6;
+  margin-top: 0.4rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+.showcase-contrib-wrapper.expanded .showcase-contrib-short {
+  display: none;
+}
+
+.showcase-contrib-extended {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.showcase-contrib-wrapper.expanded .showcase-contrib-extended {
+  display: block !important;
+  max-height: 600px;
+  opacity: 1;
+}
+
+.btn-expand-contrib {
+  background: none;
+  border: none;
+  color: var(--accent-bright);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  margin-top: 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.btn-expand-contrib:hover {
+  color: var(--accent);
+}
+
 .showcase-desc {
   font-size: 0.875rem;
   color: var(--text-secondary);

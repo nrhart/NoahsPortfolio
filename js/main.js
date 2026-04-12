@@ -98,6 +98,46 @@ document.addEventListener('DOMContentLoaded', () => {
     snapSections.forEach(el => snapObs.observe(el));
   }
 
+  // ── Expandable contributions on card click ─
+  let expandedCard = null;
+  
+  document.querySelectorAll('.showcase-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't expand if clicking on a link or button
+      if (e.target.closest('a, button, iframe')) return;
+      
+      const wrapper = card.querySelector('.showcase-contrib-wrapper');
+      if (wrapper) {
+        // If this card is already expanded, collapse it
+        if (expandedCard === card) {
+          wrapper.classList.remove('expanded');
+          expandedCard = null;
+        } else {
+          // Collapse any previously expanded card
+          if (expandedCard) {
+            const prevWrapper = expandedCard.querySelector('.showcase-contrib-wrapper');
+            if (prevWrapper) prevWrapper.classList.remove('expanded');
+          }
+          // Expand this card
+          wrapper.classList.add('expanded');
+          expandedCard = card;
+        }
+      }
+    });
+    // Add cursor pointer to show it's clickable
+    card.style.cursor = 'pointer';
+  });
+  
+  // Close expanded card when clicking outside
+  document.addEventListener('click', (e) => {
+    if (expandedCard && !expandedCard.contains(e.target)) {
+      const wrapper = expandedCard.querySelector('.showcase-contrib-wrapper');
+      if (wrapper) wrapper.classList.remove('expanded');
+      expandedCard = null;
+    }
+  });
+
+
   // ── Photo lightbox ────────────────────────
   document.querySelectorAll('.photo-expandable').forEach(img => {
     const openLightbox = () => {
