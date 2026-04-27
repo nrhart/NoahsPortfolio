@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.addEventListener('keydown', onEsc);
     };
 
-    img.addEventListener('click', () => openLightbox());
+    img.addEventListener('click', e => { e.stopPropagation(); openLightbox(); });
   });
 
   // ── Card expand modal ─────────────────────
@@ -240,12 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     card.addEventListener('click', e => {
-      if (e.target.closest('a, button')) return;
+      if (e.target.closest('a, button, .photo-expandable')) return;
       openModal();
     });
 
     card.addEventListener('keydown', e => {
-      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a, button')) {
+      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a, button, .photo-expandable')) {
         e.preventDefault();
         openModal();
       }

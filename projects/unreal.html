@@ -112,6 +112,11 @@
           loadout, and uncover the mysteries of the solar system. Fail to reach the front in time
           and &ldquo;something&rdquo; will send you back to the beginning &mdash; loop after loop.
         </div>
+        <div class="showcase-embed">
+          <video controls preload="metadata">
+            <source src="../videos/NoRailTrailer.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="tag-list">
           <span class="tag">UE5</span><span class="tag">C++</span>
           <span class="tag">Lead Engineer</span><span class="tag">Systems Design</span>
@@ -186,7 +191,7 @@
         <div class="showcase-img-placeholder" style="display:none;">&#128032;</div>
       </div>
       <div class="showcase-body">
-        <div class="showcase-meta">Solo Project &bull; University of Utah</div>
+        <div class="showcase-meta">Solo Project</div>
         <div class="showcase-title">Pet Fish Simulator</div>
         <div class="showcase-contrib-wrapper">
           <div class="showcase-contrib showcase-contrib-short">
@@ -230,12 +235,75 @@
           systems enforcing spacing and gameplay requirements. Fully seed-driven and integrated
           across Blueprints and C++.
         </div>
+        <div class="showcase-embed">
+          <video controls preload="metadata">
+            <source src="../videos/FishBowl.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div class="tag-list">
           <span class="tag">UE5</span><span class="tag">C++</span>
           <span class="tag">Procedural Gen</span><span class="tag">AI</span><span class="tag">Systems Design</span>
         </div>
         <div class="showcase-links">
           <span class="btn btn-ghost" style="opacity:0.5;cursor:default;">&#127918; Coming Soon on Itch.io</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Squirrel Souls -->
+    <div class="showcase-card">
+      <div class="showcase-img">
+        <img src="../images/SquirrelSouls.png" alt="Squirrel Souls" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="showcase-img-placeholder" style="display:none;">&#128062;</div>
+      </div>
+      <div class="showcase-body">
+        <div class="showcase-meta">Solo Project &bull; UE5 &bull; C++</div>
+        <div class="showcase-title">Squirrel Souls</div>
+        <div class="showcase-contrib-wrapper">
+          <div class="showcase-contrib showcase-contrib-short">
+            <strong>My Contributions (Solo)</strong>
+            <div style="margin-top:0.5rem;">AI, Systems Architecture, Level Design</div>
+            <div class="contrib-hint">Click to expand</div>
+          </div>
+          <div class="showcase-contrib showcase-contrib-extended">
+            <strong>My Contributions (Solo Project)</strong>
+            <div style="margin-top:0.5rem; display:flex; flex-direction:column; gap:0.5rem;">
+              <div>
+                <strong>Design Patterns &mdash; Player State &amp; Type Object</strong>
+                <ul style="margin:0.2rem 0 0 1.1rem; padding:0;">
+                  <li>Implemented a Player State pattern to cleanly separate player data from pawn logic and support persistent state across respawns.</li>
+                  <li>Used the Type Object pattern to allow custom-building enemy behaviors from composable data assets &mdash; enabling designers to define new enemy archetypes without writing code.</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Behavior Tree in C++</strong>
+                <ul style="margin:0.2rem 0 0 1.1rem; padding:0;">
+                  <li>Built the enemy Behavior Tree entirely in C++ &mdash; no Blueprint BT assets &mdash; giving precise control over task execution, memory, and evaluation order.</li>
+                </ul>
+              </div>
+              <div>
+                <strong>Level &amp; Environment Design</strong>
+                <ul style="margin:0.2rem 0 0 1.1rem; padding:0;">
+                  <li>Designed a Dark Souls&ndash;inspired arena environment with deliberate sightlines, cover placement, and encounter flow to reward positioning and patience.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-desc">
+          A Dark Souls&ndash;inspired arena project focused on demonstrating design patterns in UE5. The
+          Type Object pattern drives enemy behavior &mdash; each enemy archetype is built from composable
+          data assets rather than hardcoded logic. A custom C++ Behavior Tree controls AI decision-making,
+          and the Player State pattern manages persistent player data across the encounter. The arena
+          environment draws from Souls-like level design principles: tight geometry, deliberate encounter
+          pacing, and environmental storytelling.
+          <br /><br />
+          <em>Combat system using the Gameplay Ability System (GAS) coming soon.</em>
+        </div>
+        <div class="tag-list">
+          <span class="tag">UE5</span><span class="tag">C++</span>
+          <span class="tag">Design Patterns</span><span class="tag">Behavior Tree</span>
+          <span class="tag">GAS</span><span class="tag">Level Design</span>
         </div>
       </div>
     </div>

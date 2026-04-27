@@ -983,7 +983,8 @@ footer p {
   overflow: hidden;
   background: #000;
 }
-.showcase-embed iframe {
+.showcase-embed iframe,
+.showcase-embed video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1498,22 +1499,25 @@ html.snap-page .page {
   scroll-snap-align: start;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(280px, 560px) minmax(280px, 620px);
+  justify-content: center;
   align-items: center;
   gap: 4vw;
-  padding: var(--nav-height) 6vw 2rem;
+  padding: var(--nav-height) 3vw 2rem;
   overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 .hero-bg-squirrel {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200%;
+  left: 0;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.07;
+  opacity: 0.22;
   pointer-events: none;
   z-index: 0;
 }
@@ -1582,7 +1586,7 @@ html.snap-page .page {
   position: relative;
   display: block;
   width: 100%;
-  max-width: 520px;
+  max-width: clamp(520px, 42vw, 780px);
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(255,106,0,0.5);
@@ -1623,7 +1627,7 @@ html.snap-page .page {
 .scroll-indicator {
   position: absolute;
   bottom: 2.5rem;
-  left: 7vw;
+  left: 4vw;
   display: flex;
   align-items: center;
   gap: 0.9rem;
@@ -1666,6 +1670,10 @@ html.snap-page .page {
   display: flex;
   overflow: hidden;
   position: relative;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .ps-img {
