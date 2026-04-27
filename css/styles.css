@@ -8,12 +8,12 @@
 }
 
 :root {
-  --bg-primary:    #080010;
-  --bg-secondary:  #0e0018;
-  --bg-card:       #120020;
-  --bg-card-hover: #1a002e;
-  --border:        #2d0050;
-  --border-glow:   #8b00cc;
+  --bg-primary:    #04001a;
+  --bg-secondary:  #080028;
+  --bg-card:       #0e0030;
+  --bg-card-hover: #180045;
+  --border:        #2a0055;
+  --border-glow:   #9b00dd;
 
   --accent:        #ff2d78;
   --accent-bright: #ff6eb4;
@@ -50,36 +50,41 @@ a {
 }
 
 /* =========================================
-   BACKGROUND GRID EFFECT
+   BACKGROUND
    ========================================= */
+
+/* Tropical sunset sky gradient — top to bottom */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255,45,120,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,45,120,0.06) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background: linear-gradient(180deg,
+    #03001a 0%,
+    #10003a 18%,
+    #340060 38%,
+    #6b005a 56%,
+    #8a0030 72%,
+    #3a0010 100%
+  );
+  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Synthwave horizon ambient glow */
+/* Warm horizon glow rising from below */
 body::after {
   content: '';
   position: fixed;
-  bottom: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  height: 65%;
-  background: radial-gradient(ellipse at bottom,
-    rgba(255, 196, 0,  0.08) 0%,
-    rgba(255, 106, 0,  0.10) 20%,
-    rgba(255, 45,  120, 0.08) 45%,
-    rgba(180, 0,   255, 0.06) 65%,
-    transparent 80%
-  );
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 110%,
+      rgba(255, 200, 0,  0.10) 0%,
+      rgba(255, 100, 0,  0.09) 18%,
+      rgba(255, 20,  90, 0.07) 38%,
+      rgba(160, 0,   220, 0.04) 58%,
+      rgba(20,  0,   120, 0.02) 75%,
+      transparent 88%
+    );
   pointer-events: none;
   z-index: 0;
 }
@@ -1708,14 +1713,14 @@ html.snap-page .page {
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0.18;
-  filter: brightness(0.7) saturate(0.75);
+  opacity: 0.28;
+  filter: brightness(0.75) saturate(0.85);
   transition: opacity 0.8s ease, filter 0.6s ease;
 }
 
 .project-snap.visible .ps-img img {
-  opacity: 0.22;
-  filter: brightness(0.8) saturate(0.9);
+  opacity: 0.38;
+  filter: brightness(0.85) saturate(1.0);
 }
 
 .ps-img::after {
