@@ -172,7 +172,14 @@
             </div>
           </div>
         </div>
-        <div class="showcase-desc">
+        <div class="showcase-desc showcase-desc-preview">
+          Squirrel Life is my first solo game project applying the knowledge developed
+          through my master&rsquo;s program to a complete Unreal Engine game. I&rsquo;m building
+          it around scalable gameplay systems, maintainable architecture, and a documented
+          workflow that connects design intent with engineering implementation.
+          <div class="contrib-hint">Click to view the full project</div>
+        </div>
+        <div class="showcase-desc showcase-desc-full">
           Squirrel Life is my first solo game project applying the knowledge developed
           through my master&rsquo;s program to a complete Unreal Engine game. I&rsquo;m building
           it around scalable gameplay systems, maintainable architecture, and a documented
@@ -197,6 +204,23 @@
           in mind. Clear system boundaries, documented technical decisions, and implementation
           guides are intended to help another developer understand the codebase, contribute
           confidently, and extend the game as its scope grows.
+        </div>
+        <div class="showcase-embed">
+          <video controls playsinline preload="metadata" poster="../images/SquirrelLifeTitle.png" aria-label="Squirrel Life gameplay">
+            <source src="../videos/SquirrelLifeGameplay1.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </div>
+        <div class="showcase-desc showcase-desc-full">
+          <h3>Implemented Systems</h3>
+          <ul class="project-systems-list">
+            <li><strong>Reusable minigame framework:</strong> A shared C++ GameMode handles session flow, rewards, HUD setup, results, retries, and returning to the park. Running and climbing modes inherit this foundation and specialize their behavior, providing a starting point for future minigames.</li>
+            <li><strong>Designer-friendly tuning:</strong> Unreal Data Assets expose per-stat and per-minigame values, including level caps, progression thresholds, reward rates, base speed, and speed scaling. Designers can adjust these values in the editor without changing the underlying C++ systems.</li>
+            <li><strong>Shared stat progression:</strong> A reusable progression structure tracks levels and progress points for energy, running, climbing, flying, and swimming. Minigames award progress to their designated stat, with configurable thresholds and level caps; flying and swimming already have stat entries for future expansion.</li>
+            <li><strong>Persistent progress:</strong> A central GameInstance maintains coins and stats across level changes, with SaveGame support for loading and saving progress. It also preserves the squirrel&rsquo;s park position when moving between the park and minigames.</li>
+            <li><strong>UI events:</strong> Delegates communicate live distance and speed, completed minigame results, and changes to coins and stats, allowing UI widgets to respond to gameplay updates.</li>
+            <li><strong>Obstacle pooling:</strong> The runner spawner reuses obstacle actors and recycles them once they fall behind the player. Inactive pooled obstacles disable ticking and collision, reducing repeated actor creation and destruction.</li>
+          </ul>
         </div>
         <div class="tag-list">
           <span class="tag">Unreal Engine</span>

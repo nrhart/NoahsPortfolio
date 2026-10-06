@@ -1000,6 +1000,7 @@ footer p {
 
 /* YouTube embed inside showcase body */
 .showcase-embed {
+  flex-shrink: 0;
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -2068,6 +2069,8 @@ html.snap-page .page {
 
 /* Body panel inside modal */
 .modal-panel .showcase-body {
+  min-width: 0;
+  min-height: 0;
   padding: 3rem 3rem;
   overflow-y: auto;
   justify-content: flex-start;
@@ -2082,6 +2085,24 @@ html.snap-page .page {
 .modal-panel .showcase-desc,
 .modal-panel .showcase-contrib {
   font-size: 0.95rem;
+}
+
+.showcase-desc-full { display: none; }
+.modal-panel .showcase-desc-preview { display: none; }
+.modal-panel .showcase-desc-full { display: block; }
+
+.project-systems-list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.project-systems-list li + li { margin-top: 0.85rem; }
+
+/* Preserve content and video height inside the scrolling flex column. */
+.modal-panel .showcase-body > * { flex-shrink: 0; }
+.modal-panel .showcase-embed video { object-fit: contain; }
+.modal-panel .showcase-contrib-wrapper.expanded .showcase-contrib-extended {
+  max-height: none;
 }
 
 /* Close button */

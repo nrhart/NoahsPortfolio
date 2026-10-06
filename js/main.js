@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.showcase-card').forEach(card => {
     card.addEventListener('click', (e) => {
       // Don't expand if clicking on a link or button
-      if (e.target.closest('a, button, iframe')) return;
+      if (e.target.closest('a, button, iframe, video')) return;
       
       const wrapper = card.querySelector('.showcase-contrib-wrapper');
       if (wrapper) {
@@ -258,12 +258,12 @@ document.addEventListener('DOMContentLoaded', () => {
     projectModals.set(card, openModal);
 
     card.addEventListener('click', e => {
-      if (e.target.closest('a, button, .photo-expandable')) return;
+      if (e.target.closest('a, button, video, .photo-expandable')) return;
       openModal();
     });
 
     card.addEventListener('keydown', e => {
-      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a, button, .photo-expandable')) {
+      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a, button, video, .photo-expandable')) {
         e.preventDefault();
         openModal();
       }
