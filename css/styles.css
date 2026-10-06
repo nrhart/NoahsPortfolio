@@ -1588,7 +1588,22 @@ html.snap-page .page {
   justify-content: center;
   min-height: 76px;
   text-align: center;
-  animation: currentProjectPulse 1.8s ease-in-out infinite;
+  animation: currentProjectPulse 1.8s ease-in-out infinite,
+             currentProjectGradient 4s linear infinite;
+}
+
+.current-project-button,
+.current-project-button:hover {
+  background-image: linear-gradient(90deg,
+    #ff2d78 0%, #ff6a00 16%, #ffc400 33%, #ff2d78 50%,
+    #ff6a00 66%, #ffc400 83%, #ff2d78 100%);
+  background-size: 200% 100%;
+  background-repeat: repeat-x;
+}
+
+@keyframes currentProjectGradient {
+  from { background-position: 100% 50%; }
+  to { background-position: 0% 50%; }
 }
 
 @keyframes currentProjectPulse {
