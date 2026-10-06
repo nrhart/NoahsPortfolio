@@ -138,6 +138,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  const projectModals = new Map();
+  // Open the featured project when arriving from the homepage or a direct link.
+  const focusCurrentProject = () => {
+    if (window.location.hash !== '#current-project') return;
+    const currentProject = document.getElementById('current-project');
+    if (!currentProject) return;
+    currentProject.closest('.fade-in')?.classList.add('visible');
+    currentProject.focus({ preventScroll: true });
+    if (!document.querySelector('.modal-overlay')) {
+      projectModals.get(currentProject)?.();
+    }
+  };
+  window.addEventListener('hashchange', focusCurrentProject);
+
   // ── Photo lightbox ────────────────────────
   document.querySelectorAll('.photo-expandable').forEach(img => {
     const openLightbox = () => {
@@ -204,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (imgEl)  panel.appendChild(imgEl.cloneNode(true));
       if (bodyEl) {
         const bodyClone = bodyEl.cloneNode(true);
+        bodyClone.querySelector('.showcase-contrib-wrapper')?.classList.add('expanded');
         // Re-trigger iframe loads (cloneNode doesn't reload src)
         bodyClone.querySelectorAll('iframe').forEach(f => { const s = f.src; f.src = ''; f.src = s; });
         panel.appendChild(bodyClone);
@@ -221,12 +236,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Double rAF ensures transition plays from initial state
       requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+      closeBtn.focus();
 
       const close = () => {
         overlay.classList.remove('open');
         overlay.addEventListener('transitionend', () => {
           overlay.remove();
           document.body.style.overflow = '';
+          card.focus({ preventScroll: true });
         }, { once: true });
       };
 
@@ -238,6 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       document.addEventListener('keydown', onEsc);
     };
+    projectModals.set(card, openModal);
 
     card.addEventListener('click', e => {
       if (e.target.closest('a, button, .photo-expandable')) return;
@@ -251,4 +269,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+  focusCurrentProject();
 });

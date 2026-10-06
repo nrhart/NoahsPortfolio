@@ -1576,6 +1576,63 @@ html.snap-page .page {
 
 .snap-hero .hero-actions { justify-content: flex-start; }
 
+.snap-hero .hero-actions-featured {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.current-project-button {
+  grid-column: 1 / -1;
+  justify-content: center;
+  min-height: 76px;
+  text-align: center;
+  animation: currentProjectPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes currentProjectPulse {
+  0%, 100% {
+    scale: 1;
+    box-shadow: 0 0 8px 0 var(--accent-glow);
+  }
+  50% {
+    scale: 1.06;
+    box-shadow: 0 0 36px 8px var(--accent-glow);
+  }
+}
+
+.current-project-card {
+  scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+}
+
+.current-project-card:target,
+.current-project-card:focus-visible {
+  border-color: var(--accent-bright);
+  box-shadow: 0 0 32px var(--accent-glow);
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 4px;
+}
+
+.current-project-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .snap-hero .hero-actions-featured { grid-template-columns: 1fr 1fr; width: 100%; }
+  .hero-actions-featured > .btn { padding-inline: 0.75rem; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .current-project-button { animation: none; }
+}
+
 .hero-stats {
   display: flex;
   gap: 1.75rem;
