@@ -1587,7 +1587,7 @@ html.snap-page .page {
 .current-project-button {
   grid-column: 1 / -1;
   justify-content: center;
-  min-height: 76px;
+  min-height: 96px;
   text-align: center;
   animation: currentProjectPulse 1.8s ease-in-out infinite,
              currentProjectGradient 4s linear infinite;
