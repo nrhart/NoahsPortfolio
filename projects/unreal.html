@@ -128,10 +128,11 @@
       </div>
     </div>
 
-    <!-- Current project: media and details to follow -->
+    <!-- Squirrel Life -->
     <div class="showcase-card current-project-card" id="current-project">
       <div class="showcase-img">
-        <div class="current-project-placeholder">
+        <img src="../images/SquirrelLifeTitle.png" alt="Squirrel Life title artwork" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="current-project-placeholder" style="display:none;">
           <span class="showcase-img-placeholder" aria-hidden="true">&#127918;</span>
           <span>Project images coming soon</span>
         </div>
@@ -177,7 +178,16 @@
           it around scalable gameplay systems, maintainable architecture, and a documented
           workflow that connects design intent with engineering implementation.
           <br /><br />
-          Programming design patterns support modular systems and designer-friendly iteration.
+          I&rsquo;m developing the core gameplay systems in C++, applying the four pillars of
+          object-oriented programming: encapsulation, abstraction, inheritance, and polymorphism.
+          These principles guide how I organize system responsibilities, define clear interfaces,
+          reuse shared functionality, and support specialized behaviors as the game grows.
+          The minigame framework puts inheritance into practice: shared functionality lives
+          in reusable base classes, while individual minigames extend those classes with
+          their own rules and behaviors. This lets me build new minigames on a consistent
+          foundation without duplicating common logic, while Data Assets expose their
+          configuration for designer-friendly iteration in the editor.
+          Programming design patterns further support modular systems and designer-friendly iteration.
           Unreal Data Assets let designers customize minigames directly in the editor without
           changing core gameplay code. Object pooling allows obstacles to be spawned and reused,
           reducing repeated actor creation and destruction, while profiling tools help me monitor
@@ -192,6 +202,7 @@
           <span class="tag">Unreal Engine</span>
           <span class="tag">In Development</span>
           <span class="tag">Solo Project</span>
+          <span class="tag">C++</span>
         </div>
       </div>
     </div>
