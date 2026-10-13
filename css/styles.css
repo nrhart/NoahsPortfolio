@@ -2229,6 +2229,13 @@ html.snap-page .page {
 .writeup-document { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem; margin-bottom: 0.85rem; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); }
 .writeup-document h3 { font-size: 1rem; margin-bottom: 0.35rem; }
 .writeup-document p { color: var(--text-secondary); font-size: 0.8rem; overflow-wrap: anywhere; }
+.writeup-system { display: block; }
+.writeup-system p { font-size: 0.875rem; line-height: 1.8; margin-top: 0.75rem; }
+.writeup-group[id] { scroll-margin-top: calc(var(--nav-height) + 1.5rem); }
+.writeup-documents-heading { margin: 1.5rem 0 0.85rem; font-size: 1rem; color: var(--text-secondary); }
+.project-system-breakdown { margin-top: 1.25rem; }
+.project-system-breakdown p + p { margin-top: 0.75rem; }
+.project-system-breakdown code, .writeup-system code { overflow-wrap: anywhere; font-size: 0.9em; color: var(--accent-bright); }
 .writeup-document .showcase-links { flex-shrink: 0; }
 .pdf-overlay { z-index: 3000; }
 .pdf-panel { position: relative; display: flex; flex-direction: column; width: min(1100px, 96vw); height: 92dvh; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 16px; box-shadow: 0 24px 80px rgba(0,0,0,0.65); }

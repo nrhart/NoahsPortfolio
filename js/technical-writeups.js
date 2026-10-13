@@ -2,7 +2,19 @@
 (() => {
   const siteRoot = new URL('../', document.currentScript.src);
   const catalog = [
-    { project: 'NO RAIL', documents: [
+    { project: 'NO RAIL', systemsAnchor: 'no-rail-systems', systems: [
+      { title: 'Procedural Train Generation', paragraphs: [
+        "Designed and implemented a modular train generation system using Unreal Engine 5's level streaming functionality. The system dynamically assembles trains from a pool of predefined train car environments using LoadLevelInstanceBySoftObjectPtr. Each train consists of a randomized sequence of cars, creating varied level layouts and gameplay experiences across runs. This modular architecture allows additional train cars to be integrated without modifying the underlying generation logic."
+      ] },
+      { title: 'Dynamic Encounter & Objective System', paragraphs: [
+        'Developed a modular encounter generation system combining three independent pools: Encounters, Modifiers, and Challenges. Weighted random selection determines gameplay configurations, providing varied scenarios while maintaining designer control over encounter frequency.',
+        'Implemented multiple objective types, including Kill Enemies, Survive, and Capture Zone, each with its own completion conditions. The system coordinates encounter initialization, objective tracking, and progression through shared gameplay logic, allowing new encounters and objectives to be introduced without significantly restructuring existing systems.'
+      ] },
+      { title: 'Station Management & Puzzle Progression', paragraphs: [
+        'Designed and implemented a station management system responsible for coordinating puzzle interactions, tracking objectives, and managing progression throughout station environments. The system monitors puzzle completion and maintains persistent progress as players interact with different station elements, ensuring completed objectives remain recorded throughout the station.',
+        'This architecture centralizes station progression and supports multiple interconnected puzzles, allowing players to complete objectives while maintaining consistent gameplay state across the station.'
+      ] }
+    ], documents: [
       { title: 'NO RAIL — System and Level Design Master Document', file: 'NORAIL System and Level Design Master Doc.pdf' }
     ] },
     { project: 'AI Movement', category: 'AI Projects', documents: [
@@ -52,6 +64,19 @@
     if (className) el.className = className;
     if (text) el.textContent = text;
     return el;
+  };
+  const systemArticle = (system, className) => {
+    const article = element('article', className);
+    article.append(element('h3', '', system.title));
+    system.paragraphs.forEach(text => {
+      const paragraph = element('p');
+      const api = 'LoadLevelInstanceBySoftObjectPtr';
+      const index = text.indexOf(api);
+      if (index < 0) paragraph.textContent = text;
+      else paragraph.append(document.createTextNode(text.slice(0, index)), element('code', '', api), document.createTextNode(text.slice(index + api.length)));
+      article.append(paragraph);
+    });
+    return article;
   };
   const pdfLink = (doc, text, download = false) => {
     const link = element('a', 'btn btn-ghost', text);
@@ -148,6 +173,16 @@
       const button = viewerButton(group, 0, 'Technical Analysis →');
       button.dataset.analysisProject = project;
       actions.append(button);
+      if (group.systems) {
+        const systems = card.querySelector('[data-project-systems]');
+        if (systems) {
+          systems.append(element('h3', '', 'Gameplay Systems'));
+          group.systems.forEach(system => systems.append(systemArticle(system, 'project-system-breakdown')));
+        }
+        const link = element('a', 'btn btn-ghost', 'Gameplay Systems →');
+        link.href = new URL(`technical-writeups.html#${group.systemsAnchor}`, siteRoot).href;
+        actions.append(link);
+      }
       if (group.listOnCard) {
         const documents = element('div', 'showcase-desc');
         documents.append(element('strong', '', 'Documentation & Dev Diaries'));
@@ -183,6 +218,11 @@
         sections.set(heading, section);
         collection.append(section);
       }
+      if (group.systems) {
+        section.id = group.systemsAnchor;
+        group.systems.forEach(system => section.append(systemArticle(system, 'writeup-document writeup-system')));
+        section.append(element('h3', 'writeup-documents-heading', 'Design Documentation'));
+      }
       group.documents.forEach((doc, index) => {
         const article = element('article', 'writeup-document');
         const details = element('div');
@@ -193,5 +233,7 @@
         section.append(article);
       });
     });
+    const target = document.getElementById(window.location.hash.slice(1));
+    if (target?.classList.contains('writeup-group')) requestAnimationFrame(() => target.scrollIntoView());
   });
 })();
