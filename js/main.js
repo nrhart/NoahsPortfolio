@@ -141,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectModals = new Map();
   // Open the featured project when arriving from the homepage or a direct link.
   const focusCurrentProject = () => {
-    if (window.location.hash !== '#current-project') return;
-    const currentProject = document.getElementById('current-project');
+    if (!['#current-project', '#project-nda'].includes(window.location.hash)) return;
+    const currentProject = document.getElementById(window.location.hash.slice(1));
     if (!currentProject) return;
     currentProject.closest('.fade-in')?.classList.add('visible');
     currentProject.focus({ preventScroll: true });

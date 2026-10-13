@@ -1521,7 +1521,7 @@ html.snap-page .page {
 
 /* ─── Hero snap ──────────────────────────── */
 .snap-hero {
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
   position: relative;
   display: grid;
@@ -1529,7 +1529,7 @@ html.snap-page .page {
   justify-content: center;
   align-items: center;
   gap: 4vw;
-  padding: var(--nav-height) 3vw 2rem;
+  padding: calc(var(--nav-height) + 1.5rem) 3vw 6rem;
   overflow: hidden;
   max-width: 100%;
   width: 100%;
@@ -1614,6 +1614,16 @@ html.snap-page .page {
   gap: 0.45rem;
   min-width: 0;
 }
+
+.hero-project-compact {
+  max-width: 400px;
+  padding: 0.65rem 0.85rem;
+  gap: 0.7rem;
+}
+.hero-project-compact .hero-project-image { width: 60px; height: 60px; }
+.hero-project-compact .hero-project-info { gap: 0.3rem; }
+.hero-project-compact .hero-project-title { font-size: 1.1rem; }
+.hero-project-compact .hero-project-summary { font-size: 0.75rem; }
 .hero-current-project:hover {
   border-color: var(--accent-bright);
   background: var(--bg-card);
