@@ -2,6 +2,9 @@
 (() => {
   const siteRoot = new URL('../', document.currentScript.src);
   const catalog = [
+    { project: 'NO RAIL', documents: [
+      { title: 'NO RAIL — System and Level Design Master Document', file: 'NORAIL System and Level Design Master Doc.pdf' }
+    ] },
     { project: 'AI Movement', category: 'AI Projects', documents: [
       { title: 'AI Movement — Process Letter', file: 'Process Letter AI Movement.pdf' }
     ] },
@@ -11,6 +14,22 @@
     { project: 'Decision Making', category: 'AI Projects', documents: [
       { title: 'Decision Making — Process Letter', file: 'Process Letter Decision-Making.pdf' }
     ] },
+    { project: 'Rockin Derby', listOnCard: true, documents: [
+      { title: 'Controller Documentation', file: 'Rockin Derby Controller Doc.pdf' },
+      { title: 'Prototype — Dev Diary', file: 'Alt Control Prototype Dev Diary.pdf' },
+      { title: 'Sprint 1 — Dev Diary', file: 'Alt Control Sprint 1 Dev Diary.pdf' },
+      { title: 'Sprint 2 — Dev Diary', file: 'Alt Control Sprint 2 Dev Diary.pdf' },
+      { title: 'Sprint 3 — Dev Diary', file: 'Alt Control Sprint 3 Dev Diary.pdf' },
+      { title: 'Sprint 4 — Dev Diary', file: 'Alt Control Sprint 4 Dev Diary.pdf' }
+    ] },
+    { project: 'Graphics Engine Development', documents: [
+      { title: 'Flappy Squirrel — Final Project Write-Up', file: 'finalprojectwriteup.pdf' },
+      { title: 'Engine Audio, Collision, and Physics Systems', file: 'enginesystemwriteup.pdf' }
+    ] },
+    { project: 'Castle of Cardboard', listOnCard: true, documents: [
+      { title: 'Enemy Technical Documentation', file: 'CoC Enemy Tech Doc.pdf' },
+      { title: 'Development Diary', file: 'Castle of Cardboard DEV Diary.pdf' }
+    ] },
     { project: 'Squirrel Souls', documents: [
       { title: 'State Pattern Code Analysis', file: 'SquirrelSoulsAnalysisState.pdf' },
       { title: 'Type Object Pattern Code Analysis', file: 'SquirrelSoulAnalysisTpyeObject.pdf' },
@@ -18,10 +37,6 @@
     ] },
     { project: 'Pet Fish Simulator', documents: [
       { title: 'Procedural Generation Code Analysis', file: 'Code Analysis Pet Fish.pdf' }
-    ] },
-    { project: 'Graphics Engine Development', documents: [
-      { title: 'Flappy Squirrel — Final Project Write-Up', file: 'finalprojectwriteup.pdf' },
-      { title: 'Engine Audio, Collision, and Physics Systems', file: 'enginesystemwriteup.pdf' }
     ] },
     { project: 'Tetris', documents: [
       { title: 'Tetris Architecture Code Analysis', file: 'Tetris Code Analysis.pdf' },
@@ -133,13 +148,28 @@
       const button = viewerButton(group, 0, 'Technical Analysis →');
       button.dataset.analysisProject = project;
       actions.append(button);
+      if (group.listOnCard) {
+        const documents = element('div', 'showcase-desc');
+        documents.append(element('strong', '', 'Documentation & Dev Diaries'));
+        const list = element('ul', 'project-systems-list');
+        group.documents.forEach((doc, index) => {
+          const item = element('li');
+          const documentButton = viewerButton(group, index, doc.title);
+          documentButton.dataset.analysisProject = project;
+          documentButton.dataset.analysisIndex = String(index);
+          item.append(documentButton);
+          list.append(item);
+        });
+        documents.append(list);
+        actions.before(documents);
+      }
     });
     // Delegation also handles buttons cloned into the existing project popup.
     document.addEventListener('click', event => {
       const button = event.target.closest('[data-analysis-project]');
       if (!button || !button.closest('.modal-panel')) return;
       const group = catalog.find(item => item.project === button.dataset.analysisProject);
-      if (group) openViewer(group);
+      if (group) openViewer(group, Number(button.dataset.analysisIndex || 0));
     });
     const collection = document.getElementById('writeups-collection');
     if (!collection) return;

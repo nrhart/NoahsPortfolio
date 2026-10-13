@@ -123,8 +123,9 @@
       <div class="showcase-body">
         <div class="showcase-meta">openFrameworks &bull; C++ &bull; Playable Demo</div>
         <div class="showcase-title">Pac-Man</div>
-        <div class="showcase-desc">A Pac-Man-inspired game that brings movement, pathfinding, and AI decision making into one playable loop. Ghost behavior trees select frightened, scatter, or chase modes, while distinct targeting rules and A* routes drive their movement through the maze.</div>
-        <div class="showcase-desc">Procedural generation carves a maze using randomized depth-first backtracking, mirrors its layout, and places gameplay elements around reserved spawn areas and the ghost house. Flood-fill validation checks reachability; invalid layouts are retried, with a classic-map fallback. The generated maze feeds the same navigation, pellet, and ghost systems as the original layout.</div>
+        <div class="showcase-desc"><strong>Development Process</strong><br />For my Game AI final, I returned to an idea from my undergraduate coursework: Pac-Man as a setting for exploring agent behavior. This time, I built on my movement and pathfinding assignments to create a playable C++ project with a custom behavior tree and a procedurally generated maze.</div>
+        <div class="showcase-desc">The earlier assignments taught me to tune predictable movement, compare pathfinding heuristics, and organize decisions into extensible systems. Debugging agents that became stuck or switched states too quickly showed me how closely movement, navigation, and decision making depend on one another. Pac-Man became a way to apply those lessons together: ghost behavior trees choose a mode, distinct targeting rules establish a destination, and A* supplies the route.</div>
+        <div class="showcase-desc">I extended that foundation with procedural maze generation, using randomized backtracking, mirrored layouts, and reachability checks to connect generated environments to the same gameplay and navigation systems. The project reflects my approach throughout the course: keep building on earlier work, choose techniques that fit the problem, and make the reasoning behind the implementation clear.</div>
         <div class="tag-list"><span class="tag">Game AI</span><span class="tag">C++</span><span class="tag">Behavior Trees</span><span class="tag">A*</span><span class="tag">PCG</span></div>
         <div class="showcase-links">
           <a href="../demos/pac-man/" target="_blank" rel="noopener" class="btn btn-primary">Play Demo &#8599;</a>
@@ -158,6 +159,6 @@
 </div>
 
 <script src="../js/main.js?v=writeups-1"></script>
-<script src="../js/technical-writeups.js?v=2"></script>
+<script src="../js/technical-writeups.js?v=3"></script>
 </body>
 </html>

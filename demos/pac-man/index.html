@@ -41,9 +41,10 @@
   <p id="demo-error" hidden></p>
   <canvas id="canvas" width="1920" height="1080" tabindex="0" aria-label="Playable Pac-Man AI and procedural maze demo"></canvas>
   <section style="padding:1.5rem 0;">
-    <h2>How the systems work together</h2>
-    <p class="demo-help">This project brings movement, pathfinding, and AI decision making into a playable loop. Ghost behavior trees prioritize frightened, scatter, and chase modes; each ghost has a distinct chase-target rule. A* computes routes through the maze, and grid-based movement follows those routes while the game manages pellets, power-pellet effects, lives, and win conditions.</p>
-    <p class="demo-help">Procedural generation uses randomized depth-first backtracking to carve one half of the maze, then mirrors it. The generator reserves the ghost house and spawn areas, places pellets and power pellets, and checks reachability with a flood fill. It retries invalid layouts and falls back to the classic map after ten unsuccessful attempts, connecting generated level data directly to the same navigation and gameplay systems.</p>
+    <h2>Development Process</h2>
+    <p class="demo-help">For my Game AI final, I returned to an idea from my undergraduate coursework: Pac-Man as a setting for exploring agent behavior. This time, I built on my movement and pathfinding assignments to create a playable C++ project with a custom behavior tree and a procedurally generated maze.</p>
+    <p class="demo-help">The earlier assignments taught me to tune predictable movement, compare pathfinding heuristics, and organize decisions into extensible systems. Debugging agents that became stuck or switched states too quickly showed me how closely movement, navigation, and decision making depend on one another. Pac-Man became a way to apply those lessons together: ghost behavior trees choose a mode, distinct targeting rules establish a destination, and A* supplies the route.</p>
+    <p class="demo-help">I extended that foundation with procedural maze generation, using randomized backtracking, mirrored layouts, and reachability checks to connect generated environments to the same gameplay and navigation systems. The project reflects my approach throughout the course: keep building on earlier work, choose techniques that fit the problem, and make the reasoning behind the implementation clear.</p>
   </section>
 </main>
 <script src="demo.js"></script>
