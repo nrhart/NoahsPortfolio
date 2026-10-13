@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Making — Interactive Demo | Noah Hart</title>
+  <link rel="stylesheet" href="../../css/styles.css?v=ai-demo-1">
+  <style>
+    body { padding: 1.5rem; }
+    main { max-width: 1100px; margin: auto; position: relative; z-index: 1; }
+    h1 { margin: 0.75rem 0; }
+    .demo-toolbar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+    .demo-help { color: var(--text-secondary); line-height: 1.7; }
+    #canvas { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: white; border-radius: 10px; outline-offset: 4px; }
+    #canvas:fullscreen { width: 100%; height: 100%; object-fit: contain; background: white; }
+    #status { margin: 0.75rem 0; color: var(--accent-bright); }
+    #demo-error { color: var(--text-primary); }
+    .demo-toolbar button[aria-pressed="true"] { border-color: var(--accent-bright); color: var(--accent-bright); }
+    @media(max-width:600px) { body { padding: 1rem; } .demo-toolbar .btn { padding: 0.6rem 0.8rem; } }
+  </style>
+</head>
+<body>
+<main>
+  <a href="../../projects/ai.html#decision-making" class="btn btn-ghost">← AI Projects</a>
+  <h1>Decision Making</h1>
+  <p class="demo-help">A browser build of my original openFrameworks C++ project. Explore decision trees, behavior trees, and goal-oriented action planning (GOAP).</p>
+  <div class="demo-toolbar" aria-label="Decision-making scene">
+    <button class="btn btn-ghost" data-key="1" aria-pressed="true">1 · Decision Tree</button>
+    <button class="btn btn-ghost" data-key="2" aria-pressed="false">2 · Behavior Tree</button>
+    <button class="btn btn-ghost" data-key="3" aria-pressed="false">3 · GOAP</button>
+  </div>
+  <div class="demo-toolbar" aria-label="Simulation controls">
+    <button class="btn btn-primary" data-key="r">Start / Reset Scene</button>
+    <button class="btn btn-ghost" data-key="b">Toggle Wall Building</button>
+    <button class="btn btn-ghost" data-key="c">Clear Walls</button>
+    <button class="btn btn-ghost" data-key="u">Toggle Debug UI</button>
+    <button class="btn btn-ghost" id="fullscreen">Fullscreen ↗</button>
+  </div>
+  <p class="demo-help">Choose a scene, then use Start / Reset. Click to set a target in the Decision Tree and Behavior Tree scenes, or relocate bait in GOAP. Wall building pauses the simulation and lets you paint obstacles in the first two scenes; GOAP uses its own environment. Fullscreen makes the original debug information easier to read.</p>
+  <p id="status" role="status">Preparing browser runtime…</p>
+  <p id="demo-error" hidden></p>
+  <canvas id="canvas" width="1920" height="1080" tabindex="0" aria-label="Interactive decision-making simulation"></canvas>
+</main>
+<script src="demo.js"></script>
+</body>
+</html>

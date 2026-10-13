@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pac-Man — Interactive Demo | Noah Hart</title>
+  <link rel="stylesheet" href="../../css/styles.css?v=ai-demo-1">
+  <style>
+    body { padding: 1.5rem; }
+    main { max-width: 1100px; margin: auto; position: relative; z-index: 1; }
+    h1 { margin: 0.75rem 0; }
+    .demo-toolbar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+    .demo-help { color: var(--text-secondary); line-height: 1.7; }
+    #canvas { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: white; border-radius: 10px; outline-offset: 4px; }
+    #canvas:fullscreen { width: 100%; height: 100%; object-fit: contain; background: white; }
+    #status { margin: 0.75rem 0; color: var(--accent-bright); }
+    #demo-error { color: var(--text-primary); }
+    .demo-toolbar button[aria-pressed="true"] { border-color: var(--accent-bright); color: var(--accent-bright); }
+    @media(max-width:600px) { body { padding: 1rem; } .demo-toolbar .btn { padding: 0.6rem 0.8rem; } }
+  </style>
+</head>
+<body>
+<main>
+  <a href="../../projects/ai.html#pac-man" class="btn btn-ghost">← AI Projects</a>
+  <h1>Pac-Man</h1>
+  <p class="demo-help">A browser build of my original openFrameworks C++ project. Play a Pac-Man-inspired game combining ghost AI, A* pathfinding, and procedural maze generation.</p>
+  <div class="demo-toolbar" aria-label="Movement controls">
+    <button class="btn btn-ghost" data-key="w">↑ Up</button>
+    <button class="btn btn-ghost" data-key="a">← Left</button>
+    <button class="btn btn-ghost" data-key="s">↓ Down</button>
+    <button class="btn btn-ghost" data-key="d">→ Right</button>
+  </div>
+  <div class="demo-toolbar" aria-label="Game controls">
+    <button class="btn btn-primary" data-key="r">Restart / New Maze</button>
+    <button class="btn btn-ghost" data-key="m" id="map-toggle" aria-pressed="false">Switch to Procedural Maze</button>
+    <button class="btn btn-ghost" data-key="u">Toggle Debug UI</button>
+    <button class="btn btn-ghost" id="fullscreen">Fullscreen ↗</button>
+  </div>
+  <p class="demo-help">Use arrow keys, WASD, or the direction buttons. Collect pellets and power pellets while avoiding the ghosts. Choose Procedural Maze, then Restart / New Maze for another generation attempt. The generator checks reachability and can fall back to the classic layout.</p>
+  <p id="status" role="status">Preparing browser runtime…</p>
+  <p id="demo-error" hidden></p>
+  <canvas id="canvas" width="1920" height="1080" tabindex="0" aria-label="Playable Pac-Man AI and procedural maze demo"></canvas>
+  <section style="padding:1.5rem 0;">
+    <h2>How the systems work together</h2>
+    <p class="demo-help">This project brings movement, pathfinding, and AI decision making into a playable loop. Ghost behavior trees prioritize frightened, scatter, and chase modes; each ghost has a distinct chase-target rule. A* computes routes through the maze, and grid-based movement follows those routes while the game manages pellets, power-pellet effects, lives, and win conditions.</p>
+    <p class="demo-help">Procedural generation uses randomized depth-first backtracking to carve one half of the maze, then mirrors it. The generator reserves the ghost house and spawn areas, places pellets and power pellets, and checks reachability with a flood fill. It retries invalid layouts and falls back to the classic map after ten unsuccessful attempts, connecting generated level data directly to the same navigation and gameplay systems.</p>
+  </section>
+</main>
+<script src="demo.js"></script>
+</body>
+</html>
