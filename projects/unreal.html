@@ -13,7 +13,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unreal Engine &mdash; Noah Hart</title>
-  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/styles.css?v=writeups-1" />
 </head>
 <body>
 
@@ -32,10 +32,12 @@
         <div class="dropdown-divider"></div>
         <a href="unreal.html" role="menuitem"><img src="../images/../images/unrealicon.png" class="nav-icon" alt=""> Unreal Engine</a>
         <a href="unity.html" role="menuitem"><img src="../images/../images/unityicon.png" class="nav-icon" alt=""> Unity</a>
+        <a href="../projects/ai.html" role="menuitem"><span class="icon">&#9672;</span> AI Projects</a>
         <a href="combat.html" role="menuitem"><span class="icon">&#9876;</span> Combat Journal</a>
         <a href="custom-engine.html" role="menuitem"><span class="icon">&#9881;</span> Custom Engine</a>
       </div>
     </li>
+    <li><a href="../technical-writeups.html">Technical Writeups</a></li>
   </ul>
   <div class="nav-socials">
     <a href="mailto:noahhart.gb@gmail.com" title="Email">&#9993;</a>
@@ -429,6 +431,7 @@
           <span class="tag">Procedural Gen</span><span class="tag">AI</span><span class="tag">Systems Design</span>
         </div>
         <div class="showcase-links">
+          <a href="https://eae-git.eng.utah.edu/u1537288/pcg-fish" target="_blank" rel="noopener" class="btn btn-primary">View Repository &#8599;</a>
           <span class="btn btn-ghost" style="opacity:0.5;cursor:default;">&#127918; Coming Soon on Itch.io</span>
         </div>
       </div>
@@ -484,10 +487,58 @@
           <br /><br />
           <em>Combat system using the Gameplay Ability System (GAS) coming soon.</em>
         </div>
+        <div class="showcase-desc"><strong>Behavior Pattern Demonstration</strong></div>
+        <div class="showcase-embed">
+          <video controls playsinline preload="metadata" poster="../images/SquirrelSouls.png" aria-label="Squirrel Souls behavior pattern demonstration">
+            <source src="../videos/BehaviorPattern.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </div>
         <div class="tag-list">
           <span class="tag">UE5</span><span class="tag">C++</span>
           <span class="tag">Design Patterns</span><span class="tag">Behavior Tree</span>
           <span class="tag">GAS</span><span class="tag">Level Design</span>
+        </div>
+        <div class="showcase-links">
+          <a href="https://eae-git.eng.utah.edu/u1537288/playerstatepattern" target="_blank" rel="noopener" class="btn btn-primary">View Repository &#8599;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weapon Wheel & Gadget System — technical demo -->
+    <div class="showcase-card tech-demo-card" id="weapon-wheel">
+      <div class="showcase-img tech-demo-overview">
+        <span class="tech-demo-label">Technical Demo</span>
+        <strong>Modular weapons.<br />Interchangeable behaviors.</strong>
+        <span>Data Assets &bull; Type Object &bull; Strategy</span>
+      </div>
+      <div class="showcase-body">
+        <div class="showcase-meta">Unreal Engine &bull; Systems Prototype &bull; Ratchet &amp; Clank Inspired</div>
+        <div class="showcase-title">Weapon Wheel &amp; Gadget System</div>
+        <div class="showcase-desc">
+          A Ratchet &amp; Clank-inspired technical demo exploring a modular weapon and gadget
+          framework through a radial selection wheel. The focus is reusable gameplay architecture
+          and designer-friendly configuration.
+        </div>
+        <ul class="project-systems-list showcase-desc">
+          <li><strong>Data-driven configuration:</strong> Unreal Data Assets define weapon models, projectile classes, and tuning values through the Type Object pattern.</li>
+          <li><strong>Interchangeable behaviors:</strong> Strategy classes implement the blaster, bomb launcher, and swingshot while the player delegates execution to the selected behavior.</li>
+          <li><strong>Selection and targeting:</strong> Mouse-driven radial selection enables weapon switching; screen-space anchor targeting supports swingshot use.</li>
+        </ul>
+        <div class="showcase-desc"><strong>Weapon Wheel Showcase</strong></div>
+        <div class="showcase-embed">
+          <video controls playsinline preload="metadata" aria-label="Weapon wheel and gadget system showcase">
+            <source src="../videos/WeaponWheelShowcase.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </div>
+        <div class="tag-list">
+          <span class="tag">Technical Demo</span><span class="tag">Unreal Engine</span>
+          <span class="tag">Type Object Pattern</span><span class="tag">Strategy Pattern</span>
+          <span class="tag">Designer Tools</span>
+        </div>
+        <div class="showcase-links">
+          <a href="https://eae-git.eng.utah.edu/u1537288/squirrelactionplatformer" target="_blank" rel="noopener" class="btn btn-primary">View Repository &#8599;</a>
         </div>
       </div>
     </div>
@@ -582,6 +633,7 @@
   </footer>
 </div>
 
-<script src="../js/main.js"></script>
+<script src="../js/main.js?v=writeups-1"></script>
+<script src="../js/technical-writeups.js?v=2"></script>
 </body>
 </html>
