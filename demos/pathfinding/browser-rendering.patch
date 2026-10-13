@@ -1,0 +1,84 @@
+--- a/src/ofApp.cpp
++++ b/src/ofApp.cpp
+@@ -38,35 +38,52 @@
+ 
+         const auto& nodes = activeGraph_->getNodes();
+ 
+-        ofSetColor(120);
+-        for (const auto& node : nodes)
+-            for (const auto& edge : node.edges)
+-                ofDrawLine(node.position, nodes[edge.to].position);
+-
+-        ofSetColor(255, 255, 0);
+-        for (int id : lastResult_.visitedNodes)
+-            for (const auto& edge : nodes[id].edges)
+-                ofDrawLine(nodes[id].position,
+-                    nodes[edge.to].position);
+-
+-        ofSetColor(0, 120, 255);
+-        for (int id : lastResult_.visitedNodes)
+-            ofDrawCircle(nodes[id].position, 6);
+-
+-        ofSetLineWidth(3);
+-        ofSetColor(255, 0, 0);
+-        for (size_t i = 1; i < lastResult_.path.size(); i++)
+-            ofDrawLine(nodes[lastResult_.path[i - 1]].position,
+-                nodes[lastResult_.path[i]].position);
+-        ofSetLineWidth(1);
+-
+-        for (int i = 0; i < nodes.size(); i++) {
+-            if (i == selectedStart_) ofSetColor(0, 255, 0);
+-            else if (i == selectedGoal_) ofSetColor(255, 165, 0);
+-            else ofSetColor(255);
+-
+-            ofDrawCircle(nodes[i].position, 5);
+-        }
++        // Browser-only batching; graph/search data remain unchanged.
++        auto disc = [](ofMesh& mesh, glm::vec2 pos, float radius) {
++            for (int i=0;i<12;++i) {
++                float a=TWO_PI*i/12.0f, b=TWO_PI*(i+1)/12.0f;
++                mesh.addVertex(glm::vec3(pos,0));
++                mesh.addVertex(glm::vec3(pos+glm::vec2(cos(a),sin(a))*radius,0));
++                mesh.addVertex(glm::vec3(pos+glm::vec2(cos(b),sin(b))*radius,0));
++            }
++        };
++        static const Graph* cached=nullptr;
++        static ofVboMesh edges, dots;
++        if(cached!=activeGraph_) {
++            edges.clear(); edges.setMode(OF_PRIMITIVE_LINES);
++            dots.clear(); dots.setMode(OF_PRIMITIVE_TRIANGLES);
++            for(const auto& node:nodes) {
++                for(const auto& e:node.edges) {
++                    edges.addVertex(glm::vec3(node.position,0));
++                    edges.addVertex(glm::vec3(nodes[e.to].position,0));
++                }
++                disc(dots,node.position,5);
++            }
++            cached=activeGraph_;
++        }
++        ofSetColor(120); edges.draw();
++        ofVboMesh visitedEdges, visitedDots;
++        visitedEdges.setMode(OF_PRIMITIVE_LINES);
++        visitedDots.setMode(OF_PRIMITIVE_TRIANGLES);
++        for(int id:lastResult_.visitedNodes) {
++            for(const auto& e:nodes[id].edges) {
++                visitedEdges.addVertex(glm::vec3(nodes[id].position,0));
++                visitedEdges.addVertex(glm::vec3(nodes[e.to].position,0));
++            }
++            disc(visitedDots,nodes[id].position,6);
++        }
++        ofSetColor(255,255,0); visitedEdges.draw();
++        ofSetColor(0,120,255); visitedDots.draw();
++        ofSetLineWidth(3); ofSetColor(255,0,0);
++        ofVboMesh path; path.setMode(OF_PRIMITIVE_LINES);
++        for(size_t i=1;i<lastResult_.path.size();++i) {
++            path.addVertex(glm::vec3(nodes[lastResult_.path[i-1]].position,0));
++            path.addVertex(glm::vec3(nodes[lastResult_.path[i]].position,0));
++        }
++        path.draw(); ofSetLineWidth(1);
++        ofSetColor(255); dots.draw();
++        if(selectedStart_>=0) { ofSetColor(0,255,0); ofDrawCircle(nodes[selectedStart_].position,5); }
++        if(selectedGoal_>=0) { ofSetColor(255,165,0); ofDrawCircle(nodes[selectedGoal_].position,5); }
+ 
+         std::string algorithmStr =
+             (currentAlgorithm_ == AlgorithmType::DIJKSTRA)
