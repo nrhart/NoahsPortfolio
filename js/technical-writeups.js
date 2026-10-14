@@ -3,18 +3,167 @@
   const siteRoot = new URL('../', document.currentScript.src);
   const catalog = [
     { project: 'NO RAIL', systemsAnchor: 'no-rail-systems', systems: [
-      { title: 'Procedural Train Generation', paragraphs: [
-        "Designed and implemented a modular train generation system using Unreal Engine 5's level streaming functionality. The system dynamically assembles trains from a pool of predefined train car environments using LoadLevelInstanceBySoftObjectPtr. Each train consists of a randomized sequence of cars, creating varied level layouts and gameplay experiences across runs. This modular architecture allows additional train cars to be integrated without modifying the underlying generation logic."
-      ] },
-      { title: 'Dynamic Encounter & Objective System', paragraphs: [
-        'Developed a modular encounter generation system combining three independent pools: Encounters, Modifiers, and Challenges. Weighted random selection determines gameplay configurations, providing varied scenarios while maintaining designer control over encounter frequency.',
-        'Implemented multiple objective types, including Kill Enemies, Survive, and Capture Zone, each with its own completion conditions. The system coordinates encounter initialization, objective tracking, and progression through shared gameplay logic, allowing new encounters and objectives to be introduced without significantly restructuring existing systems.'
-      ] },
-      { title: 'Station Management & Puzzle Progression', paragraphs: [
-        'Designed and implemented a station management system responsible for coordinating puzzle interactions, tracking objectives, and managing progression throughout station environments. The system monitors puzzle completion and maintains persistent progress as players interact with different station elements, ensuring completed objectives remain recorded throughout the station.',
-        'This architecture centralizes station progression and supports multiple interconnected puzzles, allowing players to complete objectives while maintaining consistent gameplay state across the station.'
-      ] }
-    ], documents: [
+  {
+    "title": "Procedural Train Generation System",
+    "paragraphs": [
+      "I implemented modular train assembly in AEncounterManager using Unreal Engine 5 level-instance streaming. The current C++ implementation creates a five-car sequence: three connector cars surrounding two encounter cars, selected independently from two designer-configured layout pools. This combines a predictable progression structure with variation in authored environments."
+    ],
+    "sections": [
+      {
+        "title": "Architecture & Content Configuration",
+        "paragraphs": [
+          "Pool1Layouts and Pool2Layouts store TSoftObjectPtr<UWorld> references, while ConnectorCarLevel supplies the shared connector environment. SelectedTrainLevels records build order; ActiveTrainCars retains the corresponding ULevelStreamingDynamic instances. Level content remains separate from the assembly code, so designers can extend either pool without rewriting the construction loop.",
+          "Each pool uses FMath::RandRange for uniform selection. The structural order is fixed; variation comes from the selected environments rather than an arbitrary number or ordering of cars."
+        ]
+      },
+      {
+        "title": "Streaming & Placement Lifecycle",
+        "items": [
+          "StartTrainPhase validates the connector and both pools, creates the five-entry sequence, and initializes CurrentBuildLocation from TrainStartPoint or the world origin.",
+          "StreamCarAtIndex requests the next environment through LoadLevelInstanceBySoftObjectPtr, retains the returned instance, and requests loading and visibility.",
+          "WaitForStreamedLevelReady checks both loaded-level availability and visibility using 0.1-second timer retries, with a maximum of 80 attempts.",
+          "OnCarStreamed finds a SnapPointClass actor belonging to that exact loaded ULevel. Its position becomes the next car origin; missing snap points use a 4,000 cm offset along X.",
+          "The manager opens the entrance door, registers the car’s enemy spawners, advances BuildCarIndex, and streams the next car. OnTrainBuiltComplete is currently a logging extension point."
+        ],
+        "ordered": true
+      },
+      {
+        "title": "Instance Ownership & Engineering Decisions",
+        "paragraphs": [
+          "I scope discovery to each streamed ULevel rather than relying only on asset names or world-wide tags. This matters when the same connector asset is instantiated repeatedly: its doors, snap points, and spawners must belong to the correct instance.",
+          "LevelSpawners maps weak ULevelStreamingDynamic keys to FLevelSpawnerList entries containing weak AEnemySpawner references. RegisterSpawnersForLevel filters tagged actors by their actual level, giving encounter actors an instance-specific spawner lookup."
+        ],
+        "details": {
+          "summary": "Source references & lifecycle boundaries",
+          "paragraphs": [
+            "Verified in EncounterManager.h and EncounterManager.cpp. StartTrainPhase resets tracking arrays but does not explicitly unload previous level instances in this path. The readiness timeout logs and attempts OnCarStreamed; it does not guarantee recovery when a loaded level is unavailable."
+          ]
+        }
+      }
+    ],
+    "media": {
+      "architecture": [],
+      "streaming-implementation": [
+        {
+          "type": "code",
+          "code": "SelectedTrainLevels.Add(ConnectorCarLevel);\n\n    const int32 Pool1Idx = FMath::RandRange(0, Pool1Layouts.Num() - 1);\n    SelectedTrainLevels.Add(Pool1Layouts[Pool1Idx]);\n\n    SelectedTrainLevels.Add(ConnectorCarLevel);\n\n    const int32 Pool2Idx = FMath::RandRange(0, Pool2Layouts.Num() - 1);\n    SelectedTrainLevels.Add(Pool2Layouts[Pool2Idx]);\n\n    SelectedTrainLevels.Add(ConnectorCarLevel);",
+          "caption": "Source excerpt — AEncounterManager::StartTrainPhase, EncounterManager.cpp. Fixed connector order with uniform selection from two layout pools."
+        }
+      ],
+      "generated-configurations": [],
+      "gameplay": []
+    }
+  },
+  {
+    "title": "Dynamic Encounter & Objective System",
+    "paragraphs": [
+      "I separated encounter orchestration from objective-specific behavior using AEncounterManager and the Blueprint-compatible IEncounterInterface. The manager creates the configured encounter actor inside the selected train-car level, while each objective owns its gameplay conditions, UI, and completion handling."
+    ],
+    "sections": [
+      {
+        "title": "Architecture & Activation",
+        "paragraphs": [
+          "EEncounterType selects SpawnWave, CaptureZone, DefendTower, or Tutorial. The manager exposes separate encounter class references, allowing Blueprint subclasses to supply content while C++ handles dispatch. IEncounterInterface defines StartEncounter, CompleteEncounter, and IsCompleted as BlueprintNativeEvent functions.",
+          "AEncounterTerminal provides the verified C++ activation path. It checks interaction range and player identity, guards against repeated activation, calls StartEncounterByType with its own GetLevel(), and disables its trigger collision."
+        ]
+      },
+      {
+        "title": "Encounter Lifecycle",
+        "items": [
+          "StartEncounterByType resolves the terminal’s ULevel to its streamed instance and selects the class configured for EEncounterType.",
+          "SpawnActor uses OverrideLevel to place the encounter actor in the target car; SetOwningLevel gives supported objective classes access to that same instance.",
+          "The manager records the actor, connects the spawn-wave exit trigger where applicable, and invokes Execute_StartEncounter through IEncounterInterface.",
+          "The objective locates its scoped spawners or target actors, initializes its UI and state, and evaluates its own completion conditions.",
+          "OnEncounterCompleted stops encounter music, opens the same-level TrainDoor_Exit through its OpenDoor function, and records whether the last encounter car completed.",
+          "OnBuffSelected opens the connector progression door or the station door, depending on the last-encounter state."
+        ],
+        "ordered": true
+      },
+      {
+        "title": "Objective Implementations",
+        "items": [
+          "ASpawnWaveEncounter implements timed survival. Before SurviveDuration expires, OnWaveFinished can start another wave; expiry opens the exit, and leaving through the exit completes the encounter. Cleanup stops scoped spawning, unbinds callbacks, removes enemies and timer UI, and notifies the manager.",
+          "AKillEnemiesEncounter, used for the tutorial configuration, checks both spawner completion and GetEnemiesAlive() == 0 before opening the tutorial exit.",
+          "ACaptureZoneEncounter increases CaptureProgress while the player occupies the zone and decays it outside, normalized by CaptureTime and clamped from zero to one. Full progress stops scoped spawning, removes its widget, and notifies the manager.",
+          "ADefendTowerEncounter binds spawner completion and objective-destruction delegates. Success requires finished spawners and no surviving encounter enemies; objective destruction triggers failure handling."
+        ]
+      },
+      {
+        "title": "Designer Configuration & Engineering Decisions",
+        "paragraphs": [
+          "Spawn-wave and defend-tower encounters resolve per-level wave-row overrides with a default fallback. This keeps encounter behavior reusable while authored cars provide their own wave configuration. Dynamic OnWaveFinished bindings connect spawning to objective progression, with explicit unbinding in the completion paths.",
+          "The shared interface and level-scoped actor ownership let new objective behavior fit the existing orchestration without merging every completion rule into the generator."
+        ],
+        "details": {
+          "summary": "Source references & design scope",
+          "paragraphs": [
+            "Verified in EncounterManager, EncounterTerminal, EncounterInterface, SpawnWaveEncounter, KillEnemiesEncounter, CaptureZoneEncounter, and DefendTowerEncounter headers and sources. The current native implementation uses two uniformly selected layout pools; a weighted Encounters / Modifiers / Challenges model is not implemented in the reviewed C++ and is not presented here as shipped behavior. BP_EncounterStartTrigger exists as an asset reference, but its graph was not inspected. The separate ASurviveEncounter contains unfinished timer logic; timed survival described above is implemented by ASpawnWaveEncounter."
+          ]
+        }
+      }
+    ],
+    "media": {
+      "architecture": [],
+      "configuration-selection": [],
+      "encounter-lifecycle": [],
+      "objective-implementation": [],
+      "gameplay": []
+    }
+  },
+  {
+    "title": "Station Management & Puzzle Progression System",
+    "paragraphs": [
+      "I implemented station-phase orchestration in ATrainStationManager, separating the station’s time limit and return-to-train rules from individual Blueprint puzzle mechanics. Native code manages the travel lifecycle and exposes events for presentation; puzzle assets and game-instance state support the station’s interactive content."
+    ],
+    "sections": [
+      {
+        "title": "Station Architecture",
+        "paragraphs": [
+          "ATrainStationManager owns the active phase, departure state, remaining station time, and re-entry lockout. BlueprintAssignable events OnStationTimerUpdated, OnTrainDeparted, and OnStationPhaseEnded expose changes without embedding UI behavior in the manager. BP_HandleDepartureDeath is a BlueprintImplementableEvent for departure-related death handling.",
+          "ATrainReturnDoor delegates interaction to TryReturnToTrain. CanEnterTrain exposes the same eligibility rules to Blueprints: an active phase, a train that has not departed, and an expired lockout."
+        ]
+      },
+      {
+        "title": "Station Lifecycle",
+        "items": [
+          "BeginPlay calls StartStationPhase, initializes the station and lockout clocks, and starts a repeating 0.25-second timer.",
+          "Timer updates decrement and clamp the clocks and broadcast their current values for Blueprint listeners.",
+          "TryReturnToTrain checks phase state, the pawn, departure, and the lockout before ending the phase with a return request.",
+          "When station time expires, a one-time departure guard stops the clock, disables return eligibility, broadcasts departure, and enables the game mode’s station-departure respawn state.",
+          "A delayed callback invokes BP_HandleDepartureDeath. A successful return clears phase timers and travels through OpenLevel using TrainLevelName."
+        ],
+        "ordered": true
+      },
+      {
+        "title": "Puzzle Assets & State Ownership",
+        "paragraphs": [
+          "The station content includes separate Blueprint puzzle actors rather than a native central registry of completed puzzles. BP_PathPuzzleManager references BP_PathDigit and BP_KeypadDoor and contains a GenerateFullPuzzle identifier. BP_LightOutPuzzle exposes CheckPuzzleSolved and PuzzleSolved identifiers; BP_PuzzleLever references the puzzle and LeverIndex. Keypad and puzzle-door assets provide additional interaction components.",
+          "BP_DroneTarget and BP_LootBoxDronePuzzle reference PuzzleTargetCount on UNoRailGameInstance. That Blueprint-accessible integer lives beyond a single level instance, giving puzzle content a shared counter with game-instance lifetime. The game instance also exposes SavedPersistentTags and methods to add, remove, clear, and restore gameplay tags to an ability system component."
+        ]
+      },
+      {
+        "title": "Engineering Decisions & Persistence Boundaries",
+        "paragraphs": [
+          "The native phase manager provides a clear boundary for station timing and travel, while individual puzzle assets retain their interaction-specific state. Delegates and Blueprint events allow presentation and content behavior to respond to the phase without coupling every puzzle to timer implementation details.",
+          "PuzzleTargetCount has application-session lifetime through UNoRailGameInstance. This is distinct from saving to disk or restoring every completed puzzle after travel; the reviewed native code does not establish either mechanism."
+        ],
+        "details": {
+          "summary": "Source references & Blueprint inspection scope",
+          "paragraphs": [
+            "Verified native behavior comes from TrainStationManager.h/.cpp, TrainReturnDoor.h/.cpp, and NoRailGameInstance.h/.cpp. Puzzle names and references were read from existing Blueprint asset name tables, not exported executable graphs. They establish available assets and referenced state, but not exact node wiring, completion propagation, or cross-level restoration. ATrainStationManager does not contain a native puzzle-completion registry in this checkout."
+          ]
+        }
+      }
+    ],
+    "media": {
+      "architecture": [],
+      "puzzle-completion-flow": [],
+      "progress-tracking": [],
+      "puzzle-examples": [],
+      "gameplay": []
+    }
+  }
+], documents: [
       { title: 'NO RAIL — System and Level Design Master Document', file: 'NORAIL System and Level Design Master Doc.pdf' }
     ] },
     { project: 'AI Movement', category: 'AI Projects', documents: [
@@ -65,17 +214,89 @@
     if (text) el.textContent = text;
     return el;
   };
+  const documentationParagraph = text => {
+    const paragraph = element('p');
+    const identifiers = /\b(?:[AIUEF][A-Z][A-Za-z0-9_]+|BP_[A-Za-z0-9_]+|LoadLevelInstanceBySoftObjectPtr|StartTrainPhase|StreamCarAtIndex|WaitForStreamedLevelReady|OnCarStreamed|RegisterSpawnersForLevel|StartEncounterByType|SetOwningLevel|Execute_StartEncounter|OnEncounterCompleted|OnBuffSelected|TryReturnToTrain|CanEnterTrain|StartStationPhase|PuzzleTargetCount|CheckPuzzleSolved|GenerateFullPuzzle)\b/g;
+    let offset = 0;
+    for (const match of text.matchAll(identifiers)) {
+      paragraph.append(document.createTextNode(text.slice(offset, match.index)), element('code', '', match[0]));
+      offset = match.index + match[0].length;
+    }
+    paragraph.append(document.createTextNode(text.slice(offset)));
+    return paragraph;
+  };
+  // Media definitions stay empty until real assets are supplied. Each slot accepts
+  // {type: 'image'|'diagram'|'video', src, alt, caption} or {type:'code', code, caption}.
+  const documentationMedia = (entries, slot) => {
+    const container = element('div', 'technical-media');
+    container.dataset.mediaSlot = slot;
+    container.hidden = !entries.length;
+    entries.forEach(entry => {
+      const figure = element('figure');
+      if (entry.type === 'image' || entry.type === 'diagram') {
+        const image = element('img');
+        image.src = new URL(entry.src, siteRoot).href;
+        image.alt = entry.alt || entry.caption || '';
+        image.loading = 'lazy';
+        const link = element('a');
+        link.href = image.src; link.target = '_blank'; link.rel = 'noopener';
+        link.append(image); figure.append(link);
+      } else if (entry.type === 'video') {
+        const video = element('video');
+        video.src = new URL(entry.src, siteRoot).href;
+        video.controls = true; video.playsInline = true; video.preload = 'metadata';
+        if (entry.poster) video.poster = new URL(entry.poster, siteRoot).href;
+        video.setAttribute('aria-label', entry.caption || 'Gameplay demonstration');
+        figure.append(video);
+      } else if (entry.type === 'code') {
+        const pre = element('pre');
+        const code = element('code', 'technical-code');
+        const tokens = /\/\/[^\n]*|\/\*[\s\S]*?\*\/|"(?:\\.|[^"\\])*"|\b(?:class|struct|public|private|protected|virtual|override|const|void|bool|int|float|auto|if|else|for|while|return|nullptr|true|false)\b|\b\d+(?:\.\d+)?\b/g;
+        let offset = 0;
+        for (const match of entry.code.matchAll(tokens)) {
+          code.append(document.createTextNode(entry.code.slice(offset, match.index)));
+          const token = match[0];
+          const kind = token.startsWith('/') ? 'comment' : token.startsWith('"') ? 'string' : /^\d/.test(token) ? 'number' : 'keyword';
+          code.append(element('span', `syntax-${kind}`, token));
+          offset = match.index + token.length;
+        }
+        code.append(document.createTextNode(entry.code.slice(offset)));
+        pre.append(code); figure.append(pre);
+      }
+      if (entry.caption) figure.append(element('figcaption', '', entry.caption));
+      if (figure.childNodes.length) container.append(figure);
+    });
+    return container;
+  };
   const systemArticle = (system, className) => {
     const article = element('article', className);
     article.append(element('h3', '', system.title));
-    system.paragraphs.forEach(text => {
-      const paragraph = element('p');
-      const api = 'LoadLevelInstanceBySoftObjectPtr';
-      const index = text.indexOf(api);
-      if (index < 0) paragraph.textContent = text;
-      else paragraph.append(document.createTextNode(text.slice(0, index)), element('code', '', api), document.createTextNode(text.slice(index + api.length)));
-      article.append(paragraph);
+    system.paragraphs.forEach(text => article.append(documentationParagraph(text)));
+    let content = article;
+    if (className === 'project-system-breakdown' && system.sections?.length) {
+      const details = element('details', 'system-details');
+      details.append(element('summary', '', 'Architecture, lifecycle & engineering decisions'));
+      article.append(details);
+      content = details;
+    }
+    (system.sections || []).forEach(section => {
+      const block = element('div', 'system-documentation-section');
+      block.append(element('h4', '', section.title));
+      (section.paragraphs || []).forEach(text => block.append(documentationParagraph(text)));
+      if (section.items?.length) {
+        const list = element(section.ordered ? 'ol' : 'ul', 'system-documentation-list');
+        section.items.forEach(text => list.append(element('li', '', text)));
+        block.append(list);
+      }
+      if (section.details) {
+        const details = element('details', 'system-details implementation-scope');
+        details.append(element('summary', '', section.details.summary));
+        section.details.paragraphs.forEach(text => details.append(documentationParagraph(text)));
+        block.append(details);
+      }
+      content.append(block);
     });
+    Object.entries(system.media || {}).forEach(([slot, entries]) => content.append(documentationMedia(entries, slot)));
     return article;
   };
   const pdfLink = (doc, text, download = false) => {

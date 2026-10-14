@@ -66,7 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
     { threshold: 0.12 }
   );
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-in').forEach(el => {
+    // A long list may never reach a viewport-relative intersection threshold.
+    if (el.classList.contains('project-showcase')) el.classList.add('visible');
+    else observer.observe(el);
+  });
 
   // ── Image error fallback ──────────────────
   document.querySelectorAll('.showcase-img img, .featured-img img').forEach(img => {
@@ -141,9 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectModals = new Map();
   // Open the featured project when arriving from the homepage or a direct link.
   const focusCurrentProject = () => {
-    if (!['#current-project', '#project-nda'].includes(window.location.hash)) return;
+    if (!window.location.hash) return;
     const currentProject = document.getElementById(window.location.hash.slice(1));
-    if (!currentProject) return;
+    if (!currentProject || !projectModals.has(currentProject)) return;
     currentProject.closest('.fade-in')?.classList.add('visible');
     currentProject.focus({ preventScroll: true });
     if (!document.querySelector('.modal-overlay')) {
@@ -269,5 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  focusCurrentProject();
+  // Allow other DOM-ready handlers to populate technical documentation first.
+  requestAnimationFrame(focusCurrentProject);
 });

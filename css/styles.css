@@ -2244,6 +2244,25 @@ html.snap-page .page {
 .project-system-breakdown { margin-top: 1.25rem; }
 .project-system-breakdown p + p { margin-top: 0.75rem; }
 .project-system-breakdown code, .writeup-system code { overflow-wrap: anywhere; font-size: 0.9em; color: var(--accent-bright); }
+.system-documentation-section { margin-top: 1.4rem; }
+.system-documentation-section h4 { font-size: 0.95rem; color: var(--text-primary); }
+.system-documentation-list { padding-left: 1.25rem; margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.8; }
+.system-documentation-list li + li { margin-top: 0.4rem; }
+.system-details { margin-top: 1rem; }
+.system-details summary { cursor: pointer; color: var(--accent-bright); font-size: 0.8rem; font-weight: 600; }
+.system-details summary:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; }
+.implementation-scope { padding: 0.8rem; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; }
+.technical-media { margin-top: 1.25rem; }
+.technical-media[hidden] { display: none; }
+.technical-media figure { margin: 1rem 0; }
+.technical-media img, .technical-media video { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+.technical-media figcaption { margin-top: 0.5rem; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary); }
+.technical-media pre { padding: 1rem; overflow-x: auto; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; }
+.technical-media .technical-code { color: var(--text-primary); font-size: 0.8rem; line-height: 1.7; }
+.syntax-comment { color: var(--text-muted); }
+.syntax-keyword { color: var(--accent-bright); }
+.syntax-string { color: var(--accent-orange); }
+.syntax-number { color: var(--accent-yellow); }
 .writeup-document .showcase-links { flex-shrink: 0; }
 .pdf-overlay { z-index: 3000; }
 .pdf-panel { position: relative; display: flex; flex-direction: column; width: min(1100px, 96vw); height: 92dvh; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-glow); border-radius: 16px; box-shadow: 0 24px 80px rgba(0,0,0,0.65); }
