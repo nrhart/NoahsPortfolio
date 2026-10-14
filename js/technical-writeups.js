@@ -2,7 +2,7 @@
 (() => {
   const siteRoot = new URL('../', document.currentScript.src);
   const catalog = [
-    { project: 'NO RAIL', systemsAnchor: 'no-rail-systems', systems: [
+    { project: 'NO RAIL', projectURL: 'projects/unreal.html#no-rail', systemsAnchor: 'no-rail-systems', systems: [
   {
     "title": "Procedural Train Generation System",
     "paragraphs": [
@@ -166,16 +166,16 @@
 ], documents: [
       { title: 'NO RAIL — System and Level Design Master Document', file: 'NORAIL System and Level Design Master Doc.pdf' }
     ] },
-    { project: 'AI Movement', category: 'AI Projects', documents: [
+    { project: 'AI Movement', projectURL: 'projects/ai.html#ai-movement', category: 'AI Projects', documents: [
       { title: 'AI Movement — Process Letter', file: 'Process Letter AI Movement.pdf' }
     ] },
-    { project: 'Pathfinding', category: 'AI Projects', documents: [
+    { project: 'Pathfinding', projectURL: 'projects/ai.html#pathfinding', category: 'AI Projects', documents: [
       { title: 'Pathfinding — Process Letter', file: 'Process Letter Pathfinding.pdf' }
     ] },
-    { project: 'Decision Making', category: 'AI Projects', documents: [
+    { project: 'Decision Making', projectURL: 'projects/ai.html#decision-making', category: 'AI Projects', documents: [
       { title: 'Decision Making — Process Letter', file: 'Process Letter Decision-Making.pdf' }
     ] },
-    { project: 'Rockin Derby', listOnCard: true, documents: [
+    { project: 'Rockin Derby', projectURL: 'projects/unity.html#rockin-derby', listOnCard: true, documents: [
       { title: 'Controller Documentation', file: 'Rockin Derby Controller Doc.pdf' },
       { title: 'Prototype — Dev Diary', file: 'Alt Control Prototype Dev Diary.pdf' },
       { title: 'Sprint 1 — Dev Diary', file: 'Alt Control Sprint 1 Dev Diary.pdf' },
@@ -183,27 +183,27 @@
       { title: 'Sprint 3 — Dev Diary', file: 'Alt Control Sprint 3 Dev Diary.pdf' },
       { title: 'Sprint 4 — Dev Diary', file: 'Alt Control Sprint 4 Dev Diary.pdf' }
     ] },
-    { project: 'Graphics Engine Development', documents: [
+    { project: 'Graphics Engine Development', projectURL: 'projects/custom-engine.html#graphics-engine', documents: [
       { title: 'Flappy Squirrel — Final Project Write-Up', file: 'finalprojectwriteup.pdf' },
       { title: 'Engine Audio, Collision, and Physics Systems', file: 'enginesystemwriteup.pdf' }
     ] },
-    { project: 'Castle of Cardboard', listOnCard: true, documents: [
+    { project: 'Castle of Cardboard', projectURL: 'projects/unreal.html#castle-of-cardboard', listOnCard: true, documents: [
       { title: 'Enemy Technical Documentation', file: 'CoC Enemy Tech Doc.pdf' },
       { title: 'Development Diary', file: 'Castle of Cardboard DEV Diary.pdf' }
     ] },
-    { project: 'Squirrel Souls', documents: [
+    { project: 'Squirrel Souls', projectURL: 'projects/unreal.html#squirrel-souls', documents: [
       { title: 'State Pattern Code Analysis', file: 'SquirrelSoulsAnalysisState.pdf' },
       { title: 'Type Object Pattern Code Analysis', file: 'SquirrelSoulAnalysisTpyeObject.pdf' },
       { title: 'Behavior Tree Code Analysis', file: 'SquirrelSoulAnalysisBT.pdf' }
     ] },
-    { project: 'Pet Fish Simulator', documents: [
+    { project: 'Pet Fish Simulator', projectURL: 'projects/unreal.html#pet-fish-simulator', documents: [
       { title: 'Procedural Generation Code Analysis', file: 'Code Analysis Pet Fish.pdf' }
     ] },
-    { project: 'Tetris', documents: [
+    { project: 'Tetris', projectURL: 'projects/unity.html#tetris', documents: [
       { title: 'Tetris Architecture Code Analysis', file: 'Tetris Code Analysis.pdf' },
       { title: 'Command Pattern and Undo/Redo Analysis', file: 'Tetris with Command pattern Code Analysis .pdf' }
     ] },
-    { project: 'Weapon Wheel & Gadget System', documents: [
+    { project: 'Weapon Wheel & Gadget System', projectURL: 'projects/unreal.html#weapon-wheel', documents: [
       { title: 'Weapon Wheel Code Analysis', file: 'Code Analysis Weapon Wheel.pdf' }
     ] }
   ];
@@ -441,6 +441,9 @@
       }
       if (group.systems) {
         section.id = group.systemsAnchor;
+        const projectLink = element('a', 'btn btn-ghost', 'Open Project →');
+        projectLink.href = new URL(group.projectURL, siteRoot).href;
+        section.append(projectLink);
         group.systems.forEach(system => section.append(systemArticle(system, 'writeup-document writeup-system')));
         section.append(element('h3', 'writeup-documents-heading', 'Design Documentation'));
       }
@@ -450,6 +453,12 @@
         details.append(element('h3', '', doc.title), element('p', '', group.unassigned ? doc.file : group.project));
         const actions = element('div', 'showcase-links');
         actions.append(viewerButton(group, index, 'View PDF →'), pdfLink(doc, 'Open in New Tab ↗'));
+        if (group.projectURL) {
+          const projectLink = element('a', 'btn btn-ghost', 'Open Project →');
+          projectLink.href = new URL(group.projectURL, siteRoot).href;
+          projectLink.setAttribute('aria-label', `Open ${group.project} project details`);
+          actions.append(projectLink);
+        }
         article.append(details, actions);
         section.append(article);
       });
