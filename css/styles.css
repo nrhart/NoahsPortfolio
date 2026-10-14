@@ -2288,3 +2288,15 @@ html.snap-page .page {
   .pdf-header h2 { font-size: 1.05rem; }
   .pdf-header .btn { font-size: 0.75rem; padding: 0.5rem 0.7rem; }
 }
+
+/* Keep the resume label directly beneath its document icon. */
+.nav-socials .nav-resume,
+.nav-socials .nav-itch {
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1;
+}
+.nav-resume-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+}
