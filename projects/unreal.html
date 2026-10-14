@@ -233,6 +233,32 @@
             <li><strong>UI events:</strong> Delegates communicate live distance and speed, completed minigame results, and changes to coins and stats, allowing UI widgets to respond to gameplay updates.</li>
             <li><strong>Obstacle pooling:</strong> The runner spawner reuses obstacle actors and recycles them once they fall behind the player. Inactive pooled obstacles disable ticking and collision, reducing repeated actor creation and destruction.</li>
           </ul>
+          <div class="project-evidence">
+            <h3>Designer-Friendly Data Assets</h3>
+            <p>These editor views show how progression and minigame tuning are exposed for iteration without changes to gameplay code. Select an image to open it at full size.</p>
+            <figure>
+              <a href="../images/SquirrellifeDataAsset1.png" target="_blank" rel="noopener" aria-label="Open progression Data Asset screenshot at full size">
+                <img src="../images/SquirrellifeDataAsset1.png" alt="Unreal Data Asset exposing starting coins, energy per food, and per-stat starting levels, maximum levels, and points per level." loading="lazy" />
+              </a>
+              <figcaption>Economy, energy recovery, and shared stat progression settings.</figcaption>
+            </figure>
+            <figure>
+              <a href="../images/SquirrellifeDataAsset2.png" target="_blank" rel="noopener" aria-label="Open minigame Data Asset screenshot at full size">
+                <img src="../images/SquirrellifeDataAsset2.png" alt="Unreal Data Asset exposing running minigame rewards, scoring distances, base scroll speed, and speed scaling per level, with entries for other minigames." loading="lazy" />
+              </a>
+              <figcaption>Per-minigame rewards, scoring distances, and movement-speed tuning.</figcaption>
+            </figure>
+          </div>
+          <div class="project-evidence">
+            <h3>Object Pooling</h3>
+            <p>Obstacle actors are reactivated with a new position and behavior rather than recreated. Returning an obstacle to the pool hides it, disables collision and ticking, clears its target and timing state, and resets physics velocities.</p>
+            <figure>
+              <a href="../images/SquirrelLifeObjectPooling.png" target="_blank" rel="noopener" aria-label="Open object-pooling code screenshot at full size">
+                <img src="../images/SquirrelLifeObjectPooling.png" alt="C++ obstacle pooling code showing ActivateFromPool and DeactivateForPool, including collision, ticking, and physics-state resets." loading="lazy" />
+              </a>
+              <figcaption>Reusable obstacle activation and cleanup in C++.</figcaption>
+            </figure>
+          </div>
         </div>
         <div class="tag-list">
           <span class="tag">Unreal Engine</span>
@@ -433,7 +459,6 @@
         </div>
         <div class="showcase-links">
           <a href="https://eae-git.eng.utah.edu/u1537288/pcg-fish" target="_blank" rel="noopener" class="btn btn-primary">View Repository &#8599;</a>
-          <span class="btn btn-ghost" style="opacity:0.5;cursor:default;">&#127918; Coming Soon on Itch.io</span>
         </div>
       </div>
     </div>

@@ -2151,6 +2151,14 @@ html.snap-page .page {
 
 .project-systems-list li + li { margin-top: 0.85rem; }
 
+.project-evidence { margin-top: 1.5rem; }
+.project-evidence > p { margin-top: 0.5rem; }
+.project-evidence figure { margin: 1rem 0 0; }
+.project-evidence img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; }
+.project-evidence a { display: block; cursor: zoom-in; }
+.project-evidence a:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; }
+.project-evidence figcaption { margin-top: 0.5rem; font-size: 0.8rem; line-height: 1.5; color: var(--text-secondary); }
+
 /* Preserve content and video height inside the scrolling flex column. */
 .modal-panel .showcase-body > * { flex-shrink: 0; }
 .modal-panel .showcase-embed video { object-fit: contain; }
