@@ -13,7 +13,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unity &mdash; Noah Hart</title>
-  <link rel="stylesheet" href="../css/styles.css?v=mobile-1" />
+  <link rel="stylesheet" href="../css/styles.css?v=challenge-2" />
 </head>
 <body>
 
@@ -117,6 +117,12 @@
           <iframe src="https://www.youtube.com/embed/Xgomfbyb-Qw" title="Rockin Derby" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <img src="../images/rockinghorse.png" alt="Rocking Horse Controller" class="photo-expandable" style="width:55%; max-width:240px; border-radius:8px; border:1px solid var(--border); display:block; margin:0 auto;" />
+        <section class="showcase-desc showcase-desc-full project-challenge" aria-label="Engineering problem-solving">
+          <h3>Separating Rocking &amp; Steering Input</h3>
+          <p><strong>Problem:</strong> Rocking the controller interfered with steering readings. Budget and physical-design constraints limited each horse to one gyroscope, making reliable input separation a software challenge.</p>
+          <p><strong>Approach:</strong> I adjusted the sensor-processing code to compensate for interference between rocking and turning, added a center deadzone, and introduced delayed easing when steering readings became stuck. Through playtesting, I further simplified the controller logic to reduce input variance.</p>
+          <p><strong>Result:</strong> Steering became smoother and easier to control while retaining the single-sensor design. This work also helped distinguish input-processing issues from the wiring and connection problems that still required hardware iteration.</p>
+        </section>
         <div class="tag-list">
           <span class="tag">Unity</span><span class="tag">C#</span>
           <span class="tag">Hardware / Bluetooth</span><span class="tag">Alt Control</span>

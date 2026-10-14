@@ -1,0 +1,360 @@
+[
+  {
+    "source_document": "Executive Report.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-initial.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/initial/image2.png",
+        "bytes": 1924199,
+        "width": 1638,
+        "height": 1144,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/initial/image3.png",
+        "bytes": 35959,
+        "width": 840,
+        "height": 208,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/initial/image1.png",
+        "bytes": 2465306,
+        "width": 1527,
+        "height": 1205,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 540925,
+    "pdf_pages": 3
+  },
+  {
+    "source_document": "Executive Report Sprint 2.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-sprint-2.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/sprint-2/image2.png",
+        "bytes": 2404,
+        "width": 192,
+        "height": 59,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-2/image3.png",
+        "bytes": 4323758,
+        "width": 2048,
+        "height": 1243,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-2/image1.png",
+        "bytes": 138765,
+        "width": 679,
+        "height": 675,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-2/image5.png",
+        "bytes": 4179814,
+        "width": 2048,
+        "height": 1219,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-2/image4.png",
+        "bytes": 4026989,
+        "width": 2048,
+        "height": 1223,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 700523,
+    "pdf_pages": 3
+  },
+  {
+    "source_document": "_Executive Report Sprint 3.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-sprint-3.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/sprint-3/image2.png",
+        "bytes": 137465,
+        "width": 886,
+        "height": 708,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-3/image3.png",
+        "bytes": 32542,
+        "width": 971,
+        "height": 711,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-3/image1.png",
+        "bytes": 151707,
+        "width": 1033,
+        "height": 764,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-3/image5.png",
+        "bytes": 11032,
+        "width": 481,
+        "height": 511,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-3/image4.png",
+        "bytes": 1189939,
+        "width": 1822,
+        "height": 558,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-3/image6.png",
+        "bytes": 906528,
+        "width": 1673,
+        "height": 502,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 424247,
+    "pdf_pages": 5
+  },
+  {
+    "source_document": "Executive Report Sprint 4.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-sprint-4.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/sprint-4/image3.mp4",
+        "bytes": 8708668,
+        "width": 1280,
+        "height": 720,
+        "frames": 261,
+        "original_embedded_file": "images/no-rail/reports/sprint-4/image3.gif",
+        "format": "MP4 conversion of embedded GIF; original preserved in source DOCX"
+      },
+      {
+        "file": "images/no-rail/reports/sprint-4/image1.mp4",
+        "bytes": 7116934,
+        "width": 1280,
+        "height": 720,
+        "frames": 204,
+        "original_embedded_file": "images/no-rail/reports/sprint-4/image1.gif",
+        "format": "MP4 conversion of embedded GIF; original preserved in source DOCX"
+      },
+      {
+        "file": "images/no-rail/reports/sprint-4/image2.mp4",
+        "bytes": 3089202,
+        "width": 1280,
+        "height": 720,
+        "frames": 122,
+        "original_embedded_file": "images/no-rail/reports/sprint-4/image2.gif",
+        "format": "MP4 conversion of embedded GIF; original preserved in source DOCX"
+      }
+    ],
+    "pdf_bytes": 458418,
+    "pdf_pages": 2
+  },
+  {
+    "source_document": "Executive Report Sprint 5.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-sprint-5.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/sprint-5/image2.png",
+        "bytes": 1478594,
+        "width": 1346,
+        "height": 814,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-5/image3.png",
+        "bytes": 3795936,
+        "width": 1538,
+        "height": 2048,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-5/image1.png",
+        "bytes": 92709,
+        "width": 404,
+        "height": 531,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/sprint-5/image4.png",
+        "bytes": 912571,
+        "width": 2048,
+        "height": 1463,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 914884,
+    "pdf_pages": 4
+  },
+  {
+    "source_document": "Executive Report (1).docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-design-refinement.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/design-refinement/image2.png",
+        "bytes": 78771,
+        "width": 1061,
+        "height": 547,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/design-refinement/image3.png",
+        "bytes": 3858237,
+        "width": 1536,
+        "height": 2048,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/design-refinement/image1.png",
+        "bytes": 23928,
+        "width": 758,
+        "height": 399,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/design-refinement/image4.png",
+        "bytes": 2858224,
+        "width": 1953,
+        "height": 1334,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 580334,
+    "pdf_pages": 3
+  },
+  {
+    "source_document": "Executive Report Gold Final.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-gold-final.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/gold-final/image2.png",
+        "bytes": 2482192,
+        "width": 1772,
+        "height": 1153,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold-final/image3.png",
+        "bytes": 2239326,
+        "width": 1859,
+        "height": 1199,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold-final/image1.png",
+        "bytes": 106250,
+        "width": 1154,
+        "height": 464,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold-final/image5.png",
+        "bytes": 1998532,
+        "width": 1769,
+        "height": 996,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold-final/image4.png",
+        "bytes": 1061408,
+        "width": 1866,
+        "height": 938,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold-final/image6.png",
+        "bytes": 1519249,
+        "width": 1260,
+        "height": 853,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold-final/image8.png",
+        "bytes": 160800,
+        "width": 977,
+        "height": 790,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold-final/image7.png",
+        "bytes": 1435250,
+        "width": 1919,
+        "height": 1188,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 689140,
+    "pdf_pages": 4
+  },
+  {
+    "source_document": "Executive Report Gold.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-gold.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/gold/image2.png",
+        "bytes": 28853,
+        "width": 1128,
+        "height": 263,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold/image3.png",
+        "bytes": 1016413,
+        "width": 1015,
+        "height": 612,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold/image1.png",
+        "bytes": 59014,
+        "width": 801,
+        "height": 323,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/gold/image4.png",
+        "bytes": 197199,
+        "width": 1455,
+        "height": 1122,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 354687,
+    "pdf_pages": 2
+  },
+  {
+    "source_document": "Executive Report PreBeta.docx",
+    "pdf": "pdfs/no-rail-reports/no-rail-executive-report-pre-beta.pdf",
+    "images": [
+      {
+        "file": "images/no-rail/reports/pre-beta/image2.png",
+        "bytes": 2376845,
+        "width": 1963,
+        "height": 1159,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/pre-beta/image3.png",
+        "bytes": 2534588,
+        "width": 1995,
+        "height": 1204,
+        "frames": 1
+      },
+      {
+        "file": "images/no-rail/reports/pre-beta/image1.png",
+        "bytes": 685937,
+        "width": 958,
+        "height": 952,
+        "frames": 1
+      }
+    ],
+    "pdf_bytes": 349405,
+    "pdf_pages": 2
+  }
+]

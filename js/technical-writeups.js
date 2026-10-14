@@ -2,7 +2,7 @@
 (() => {
   const siteRoot = new URL('../', document.currentScript.src);
   const catalog = [
-    { project: 'NO RAIL', projectURL: 'projects/unreal.html#no-rail', systemsAnchor: 'no-rail-systems', systems: [
+    { project: 'NO RAIL', projectURL: 'projects/unreal.html#no-rail', systemsAnchor: 'no-rail-systems', leadership: { title: 'Engineering Leadership & Designer Workflow', paragraphs: ['I organized and led engineering meetings during final integration, tracking tasks and keeping system work aligned across the team. Refactoring and documenting the encounter workflow enabled our train-car designer to configure and test content independently.', 'I coordinated reusable level templates with environment artists and worked with designers to refine puzzle layouts and scope. Final integration connected the tutorial, train encounters, station exploration, and death/respawn flow.'] }, systems: [
   {
     "title": "Procedural Train Generation System",
     "paragraphs": [
@@ -42,7 +42,16 @@
       }
     ],
     "media": {
-      "architecture": [],
+      "architecture": [
+        {
+          "type": "image",
+          "src": "images/no-rail/reports/design-refinement/image2.png",
+          "alt": "Annotated train-car templates showing capture zones, enemy spawn points, and traversal routes",
+          "caption": "Development study — reusable train-car layouts communicated encounter placement and traversal requirements to the environment team. Source: Design Refinement executive report.",
+          "width": 1061,
+          "height": 547
+        }
+      ],
       "streaming-implementation": [
         {
           "type": "code",
@@ -50,7 +59,16 @@
           "caption": "Source excerpt — AEncounterManager::StartTrainPhase, EncounterManager.cpp. Fixed connector order with uniform selection from two layout pools."
         }
       ],
-      "generated-configurations": [],
+      "generated-configurations": [
+        {
+          "type": "image",
+          "src": "images/no-rail/reports/sprint-3/image4.png",
+          "alt": "Prototype train assembled from streamed whitebox car environments",
+          "caption": "Sprint 3 prototype — streamed car assembly and snap-point placement. This earlier build illustrates development of the generator; the current five-car structure is described above.",
+          "width": 1822,
+          "height": 558
+        }
+      ],
       "gameplay": []
     }
   },
@@ -60,6 +78,13 @@
       "I separated encounter orchestration from objective-specific behavior using AEncounterManager and the Blueprint-compatible IEncounterInterface. The manager creates the configured encounter actor inside the selected train-car level, while each objective owns its gameplay conditions, UI, and completion handling."
     ],
     "sections": [
+      {
+        "title": "Refactoring for Designers & Player Onboarding",
+        "paragraphs": [
+          "The early encounter manager selected encounters, modifiers, and challenges automatically. As the team refined the game loop, I refactored the system around two layout pools and configurable encounter actors, separating entering a train car from activating its encounter at a terminal.",
+          "I documented level setup and alignment so our train-car designer could configure and test layouts independently. I also implemented the tutorial and adapted an existing encounter for onboarding, introducing the activation process before players entered the regular run structure."
+        ]
+      },
       {
         "title": "Architecture & Activation",
         "paragraphs": [
@@ -97,14 +122,37 @@
         "details": {
           "summary": "Source references & design scope",
           "paragraphs": [
-            "Verified in EncounterManager, EncounterTerminal, EncounterInterface, SpawnWaveEncounter, KillEnemiesEncounter, CaptureZoneEncounter, and DefendTowerEncounter headers and sources. The current native implementation uses two uniformly selected layout pools; a weighted Encounters / Modifiers / Challenges model is not implemented in the reviewed C++ and is not presented here as shipped behavior. BP_EncounterStartTrigger exists as an asset reference, but its graph was not inspected. The separate ASurviveEncounter contains unfinished timer logic; timed survival described above is implemented by ASpawnWaveEncounter."
+            "Verified in EncounterManager, EncounterTerminal, EncounterInterface, SpawnWaveEncounter, KillEnemiesEncounter, CaptureZoneEncounter, and DefendTowerEncounter headers and sources. The current native implementation uses two uniformly selected layout pools; the earlier weighted Encounters / Modifiers / Challenges model is documented in Sprint 2 and Sprint 3 reports, but is not the current implementation in the reviewed C++. BP_EncounterStartTrigger exists as an asset reference, but its graph was not inspected. The separate ASurviveEncounter contains unfinished timer logic; timed survival described above is implemented by ASpawnWaveEncounter."
           ]
         }
+      },
+      {
+        "title": "Integration & Debugging",
+        "paragraphs": [
+          "During final integration, I fixed capture-zone progress when players spawned inside the zone and enemies failing to damage the defense objective. I tested encounter win/death conditions alongside the surrounding progression flow, including the return to the spawn car after death."
+        ]
       }
     ],
     "media": {
       "architecture": [],
-      "configuration-selection": [],
+      "configuration-selection": [
+        {
+          "type": "image",
+          "src": "images/no-rail/reports/gold/image2.png",
+          "alt": "Unreal editor Encounter Type dropdown with Spawn Wave and Capture Zone options",
+          "caption": "Gold-stage editor workflow — a placed encounter actor exposes its encounter type for level-design configuration. The screenshot captures the options available at that development stage.",
+          "width": 1128,
+          "height": 263
+        },
+        {
+          "type": "image",
+          "src": "images/no-rail/reports/gold/image3.png",
+          "alt": "Encounter terminal actor placed within an authored train-car environment",
+          "caption": "Gold-stage terminal placement — encounter activation is an explicit player interaction rather than an automatic consequence of entering the car.",
+          "width": 1015,
+          "height": 612
+        }
+      ],
       "encounter-lifecycle": [],
       "objective-implementation": [],
       "gameplay": []
@@ -135,6 +183,13 @@
         "ordered": true
       },
       {
+        "title": "Puzzle Implementation & Station Design",
+        "paragraphs": [
+          "I implemented station puzzles and traversal mechanics, including Lights Out, drone targets, a combination puzzle, and elevators used for progression. The recurring station design balanced exploration and rewards against the train departure timer.",
+          "Earlier puzzle whiteboxes separated mechanics from environmental dressing so the art team could adapt rooms without redesigning the underlying interaction. Final integration brought these puzzles, tutorial guidance, station timing, and return travel into the complete train–station loop."
+        ]
+      },
+      {
         "title": "Puzzle Assets & State Ownership",
         "paragraphs": [
           "The station content includes separate Blueprint puzzle actors rather than a native central registry of completed puzzles. BP_PathPuzzleManager references BP_PathDigit and BP_KeypadDoor and contains a GenerateFullPuzzle identifier. BP_LightOutPuzzle exposes CheckPuzzleSolved and PuzzleSolved identifiers; BP_PuzzleLever references the puzzle and LeverIndex. Keypad and puzzle-door assets provide additional interaction components.",
@@ -159,12 +214,38 @@
       "architecture": [],
       "puzzle-completion-flow": [],
       "progress-tracking": [],
-      "puzzle-examples": [],
+      "puzzle-examples": [
+        {
+          "type": "image",
+          "src": "images/no-rail/reports/gold-final/image3.png",
+          "alt": "Station puzzle whitebox with illuminated wall indicators and interactive elements",
+          "caption": "Gold Final report — Lights Out puzzle development within the station whitebox.",
+          "width": 1859,
+          "height": 1199
+        },
+        {
+          "type": "image",
+          "src": "images/no-rail/reports/pre-beta/image1.png",
+          "alt": "In-game number keypad used to unlock station puzzle rewards",
+          "caption": "PreBeta report — combination-puzzle interaction, developed alongside room layouts and environmental clues.",
+          "width": 958,
+          "height": 952
+        }
+      ],
       "gameplay": []
     }
   }
 ], documents: [
-      { title: 'NO RAIL — System and Level Design Master Document', file: 'NORAIL System and Level Design Master Doc.pdf' }
+      { title: 'NO RAIL — System and Level Design Master Document', file: 'NORAIL System and Level Design Master Doc.pdf' },
+      { title: "Gold — Encounter Refactor & Designer Workflow", file: 'no-rail-reports/no-rail-executive-report-gold.pdf', report: true },
+      { title: "Gold Final — Integration, Tutorial & Station Systems", file: 'no-rail-reports/no-rail-executive-report-gold-final.pdf', report: true },
+      { title: "Sprint 3 — Procedural Train Framework & Progression", file: 'no-rail-reports/no-rail-executive-report-sprint-3.pdf', report: true },
+      { title: "Initial Report — Enemy Spawning & Level Streaming", file: 'no-rail-reports/no-rail-executive-report-initial.pdf', report: true },
+      { title: "Sprint 2 — Early Encounter Architecture", file: 'no-rail-reports/no-rail-executive-report-sprint-2.pdf', report: true },
+      { title: "Sprint 4 — Gameplay Loop & Capture Zone", file: 'no-rail-reports/no-rail-executive-report-sprint-4.pdf', report: true },
+      { title: "Sprint 5 — Tutorial Puzzle & Production Planning", file: 'no-rail-reports/no-rail-executive-report-sprint-5.pdf', report: true },
+      { title: "Design Refinement — Templates & Scope", file: 'no-rail-reports/no-rail-executive-report-design-refinement.pdf', report: true },
+      { title: "PreBeta — Puzzle Whiteboxes & Traversal", file: 'no-rail-reports/no-rail-executive-report-pre-beta.pdf', report: true }
     ] },
     { project: 'AI Movement', projectURL: 'projects/ai.html#ai-movement', category: 'AI Projects', documents: [
       { title: 'AI Movement — Process Letter', file: 'Process Letter AI Movement.pdf' }
@@ -207,7 +288,7 @@
       { title: 'Weapon Wheel Code Analysis', file: 'Code Analysis Weapon Wheel.pdf' }
     ] }
   ];
-  const pdfURL = doc => new URL(`pdfs/${encodeURIComponent(doc.file)}`, siteRoot).href;
+  const pdfURL = doc => new URL(`pdfs/${doc.file.split("/").map(encodeURIComponent).join("/")}`, siteRoot).href;
   const element = (tag, className, text) => {
     const el = document.createElement(tag);
     if (className) el.className = className;
@@ -238,6 +319,8 @@
         image.src = new URL(entry.src, siteRoot).href;
         image.alt = entry.alt || entry.caption || '';
         image.loading = 'lazy';
+        image.decoding = 'async';
+        if (entry.width && entry.height) { image.width = entry.width; image.height = entry.height; }
         const link = element('a');
         link.href = image.src; link.target = '_blank'; link.rel = 'noopener';
         link.append(image); figure.append(link);
@@ -445,9 +528,21 @@
         projectLink.href = new URL(group.projectURL, siteRoot).href;
         section.append(projectLink);
         group.systems.forEach(system => section.append(systemArticle(system, 'writeup-document writeup-system')));
+        if (group.leadership) section.append(systemArticle(group.leadership, 'writeup-document writeup-system'));
         section.append(element('h3', 'writeup-documents-heading', 'Design Documentation'));
       }
+      let reportsPanel;
       group.documents.forEach((doc, index) => {
+        let destination = section;
+        if (doc.report) {
+          if (!reportsPanel) {
+            reportsPanel = element('details', 'system-details development-reports');
+            reportsPanel.append(element('summary', '', `Development Reports (${group.documents.filter(item => item.report).length})`));
+            reportsPanel.append(element('p', 'development-reports-intro', 'Executive reports documenting implementation, design changes, and team coordination from prototype to Gold. Earlier reports describe earlier designs; the technical breakdowns above describe the reviewed implementation.'));
+            section.append(reportsPanel);
+          }
+          destination = reportsPanel;
+        }
         const article = element('article', 'writeup-document');
         const details = element('div');
         details.append(element('h3', '', doc.title), element('p', '', group.unassigned ? doc.file : group.project));
@@ -460,7 +555,7 @@
           actions.append(projectLink);
         }
         article.append(details, actions);
-        section.append(article);
+        destination.append(article);
       });
     });
     const target = document.getElementById(window.location.hash.slice(1));

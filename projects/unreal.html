@@ -13,7 +13,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unreal Engine &mdash; Noah Hart</title>
-  <link rel="stylesheet" href="../css/styles.css?v=mobile-1" />
+  <link rel="stylesheet" href="../css/styles.css?v=no-rail-reports-3" />
 </head>
 <body>
 
@@ -129,6 +129,17 @@
           </video>
         </div>
         <div class="showcase-desc showcase-desc-full" data-project-systems="NO RAIL"></div>
+        <section class="showcase-desc showcase-desc-full project-challenge" aria-label="Engineering problem-solving">
+          <h3>Reworking Encounter Activation &amp; Player Onboarding</h3>
+          <p><strong>Problem:</strong> Encounters originally started automatically, but that behavior no longer supported the intended game loop. Players needed to deliberately activate each encounter and understand how combat connected to progression.</p>
+          <p><strong>Approach:</strong> I refactored the encounter manager around configurable encounter actors and terminal-driven activation, separating entry into a train car from encounter initialization. This allowed our train-car designer to configure and test layouts independently. I documented level setup and alignment, then added a tutorial to introduce activation and progression through the game loop.</p>
+          <p><strong>Result:</strong> The revised system gave players control over when an encounter began and aligned the encounter architecture with the team’s evolving design. The tutorial introduced that interaction before players entered the regular run structure.</p>
+        </section>
+        <section class="showcase-desc showcase-desc-full project-challenge" aria-label="Engineering leadership and collaboration">
+          <h3>Engineering Leadership &amp; Designer Workflow</h3>
+          <p>I organized and led engineering meetings during final integration, tracking tasks and keeping system work aligned across the team. Refactoring and documenting the encounter workflow enabled our train-car designer to configure and test content independently.</p>
+          <p>I also coordinated reusable level templates with environment artists and worked with designers to refine puzzle layouts and scope. During final integration, I resolved encounter issues such as capture zones not progressing when players spawned inside them and enemies failing to damage the defense objective.</p>
+        </section>
         <div class="tag-list">
           <span class="tag">UE5</span><span class="tag">C++</span>
           <span class="tag">Lead Engineer</span><span class="tag">Systems Design</span>
@@ -387,6 +398,12 @@
         <div class="showcase-embed">
           <iframe src="https://www.youtube.com/embed/LkJFo00AmPQ" title="Castle of Cardboard" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        <section class="showcase-desc showcase-desc-full project-challenge" aria-label="Engineering problem-solving">
+          <h3>Resolving Enemy AI &amp; Turn-Based Movement Conflicts</h3>
+          <p><strong>Problem:</strong> Enemy behavior conflicted with the turn-based movement system, causing enemies to become stuck and soft-locking player movement late in development.</p>
+          <p><strong>Approach:</strong> During an overnight debugging effort, I worked to resolve the interaction between enemy behavior and turn progression, focusing on the cases preventing the player from continuing.</p>
+          <p><strong>Takeaway:</strong> The experience reinforced the importance of testing enemy AI within the complete movement loop early, including blocked movement and other edge cases that can interrupt progression.</p>
+        </section>
         <div class="tag-list">
           <span class="tag">Unreal</span><span class="tag">AI</span>
           <span class="tag">SFX</span><span class="tag">Level Design</span><span class="tag">Mobile</span>
@@ -660,6 +677,6 @@
 </div>
 
 <script src="../js/main.js?v=mobile-1"></script>
-<script src="../js/technical-writeups.js?v=no-rail-source-2"></script>
+<script src="../js/technical-writeups.js?v=no-rail-reports-3"></script>
 </body>
 </html>
