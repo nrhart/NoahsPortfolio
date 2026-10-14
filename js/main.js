@@ -3,6 +3,55 @@
    ========================================= */
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Shared mobile navigation keeps every destination and contact link accessible.
+  const navigation = document.querySelector('nav');
+  if (navigation) {
+    const links = navigation.querySelector('.nav-links');
+    const socials = navigation.querySelector('.nav-socials');
+    const panel = document.createElement('div');
+    panel.className = 'nav-panel';
+    panel.id = 'site-navigation';
+    if (links) panel.append(links);
+    if (socials) panel.append(socials);
+    const toggle = document.createElement('button');
+    toggle.className = 'mobile-menu-toggle';
+    toggle.type = 'button';
+    toggle.textContent = 'Menu ☰';
+    toggle.setAttribute('aria-controls', panel.id);
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+    navigation.append(toggle, panel);
+    navigation.classList.add('mobile-ready');
+    const setMenu = open => {
+      navigation.classList.toggle('mobile-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      toggle.textContent = open ? 'Close ×' : 'Menu ☰';
+    };
+    toggle.addEventListener('click', () => setMenu(!navigation.classList.contains('mobile-open')));
+    panel.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', event => { if (!navigation.contains(event.target)) setMenu(false); });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && navigation.classList.contains('mobile-open')) {
+        setMenu(false); toggle.focus();
+      }
+    });
+    const mobile = window.matchMedia('(max-width: 850px)');
+    mobile.addEventListener('change', () => setMenu(false));
+    navigation.addEventListener('focusout', () => {
+      requestAnimationFrame(() => { if (!navigation.contains(document.activeElement)) setMenu(false); });
+    });
+  }
+
+  // Avoid downloading the decorative trailer on phones or reduced-motion devices.
+  const backgroundVideo = document.querySelector('.hero-bg-squirrel');
+  const backgroundSource = backgroundVideo?.querySelector('source[data-src]');
+  if (backgroundSource && !window.matchMedia('(max-width: 850px), (prefers-reduced-motion: reduce)').matches) {
+    backgroundSource.src = backgroundSource.dataset.src;
+    backgroundVideo.load();
+    backgroundVideo.play().catch(() => {});
+  }
+
   // ── Dropdown toggle ──────────────────────
   const dropBtn = document.querySelector('.nav-btn');
   const dropMenu = document.querySelector('.dropdown-menu');
@@ -232,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
       closeBtn.className = 'modal-close';
       closeBtn.innerHTML = '&times;';
       closeBtn.setAttribute('aria-label', 'Close');
-      panel.appendChild(closeBtn);
+      panel.prepend(closeBtn);
 
       overlay.appendChild(panel);
       document.body.appendChild(overlay);
