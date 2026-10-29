@@ -2373,3 +2373,12 @@ html.snap-page .page {
 .development-reports > summary { font-size: 1rem; min-height: 44px; display: list-item; padding-block: 0.5rem; }
 .development-reports-intro { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7; margin: 0.75rem 0 1rem; }
 .development-reports .writeup-document:last-child { margin-bottom: 0; }
+
+.hero-visual { flex-direction: column; align-items: flex-end; gap: 1rem; }
+.hero-details { align-self: center; }
+@media (max-width: 850px) { .hero-visual { align-items: center; } }
+
+.system-collapse > summary { cursor: pointer; color: var(--text-primary); min-height: 44px; padding-block: 0.5rem; }
+.system-collapse > summary h3 { display: inline; margin: 0; }
+.system-collapse > summary:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 4px; border-radius: 4px; }
+.system-collapsible-content { padding-top: 1rem; }

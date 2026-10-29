@@ -380,6 +380,15 @@
       content.append(block);
     });
     Object.entries(system.media || {}).forEach(([slot, entries]) => content.append(documentationMedia(entries, slot)));
+    if (className.includes('writeup-system')) {
+      const details = element('details', `${className} system-collapse`);
+      const summary = element('summary');
+      const heading = article.querySelector('h3');
+      summary.append(heading);
+      article.className = 'system-collapsible-content';
+      details.append(summary, article);
+      return details;
+    }
     return article;
   };
   const pdfLink = (doc, text, download = false) => {

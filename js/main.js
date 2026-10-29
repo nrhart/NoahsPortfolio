@@ -43,13 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Avoid downloading the decorative trailer on phones or reduced-motion devices.
+  // Re-evaluate playback when the window size or motion preference changes.
+  // Keep the trailer unloaded on phones until a desktop-sized view is needed.
   const backgroundVideo = document.querySelector('.hero-bg-squirrel');
   const backgroundSource = backgroundVideo?.querySelector('source[data-src]');
-  if (backgroundSource && !window.matchMedia('(max-width: 850px), (prefers-reduced-motion: reduce)').matches) {
-    backgroundSource.src = backgroundSource.dataset.src;
-    backgroundVideo.load();
-    backgroundVideo.play().catch(() => {});
+  if (backgroundSource) {
+    const backgroundDisabled = window.matchMedia('(max-width: 850px), (prefers-reduced-motion: reduce)');
+    const updateBackgroundVideo = () => {
+      if (backgroundDisabled.matches) {
+        backgroundVideo.pause();
+        backgroundVideo.hidden = true;
+        return;
+      }
+      backgroundVideo.hidden = false;
+      if (!backgroundSource.getAttribute('src')) {
+        backgroundSource.src = backgroundSource.dataset.src;
+        backgroundVideo.load();
+      }
+      backgroundVideo.play().catch(() => {});
+    };
+    backgroundDisabled.addEventListener('change', updateBackgroundVideo);
+    updateBackgroundVideo();
   }
 
   // ── Dropdown toggle ──────────────────────
