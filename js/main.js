@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBackgroundVideo();
   }
 
-  // Three scroll hints: five seconds after full load, then ten seconds apart.
+  // Three scroll hints: ten seconds after full load, then ten seconds apart.
   const landingPage = document.querySelector('html.snap-page .page');
   if (landingPage) {
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener(event, stopHint, { passive: true, once: true });
     }
     const scheduleHints = () => {
-      for (const delay of [5000, 15000, 25000]) {
+      for (const delay of [10000, 20000, 30000]) {
         hintTimers.push(setTimeout(() => {
           if (interacted || motionPreference.matches || document.hidden || window.scrollY > 8 ||
               document.documentElement.scrollHeight <= window.innerHeight ||
