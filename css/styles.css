@@ -2495,3 +2495,18 @@ html.snap-page .page {
 .about-skill-group .tag-list { margin-top: 0.55rem; }
 .about-skill-group .tag { max-width: 100%; overflow-wrap: anywhere; }
 .contact-brand-icon { display: block; width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Balance skill categories into two columns above Archie's photo. */
+.about-skills-columns { columns: 2; column-gap: 1.25rem; }
+.about-skills-columns .about-skill-group { display: inline-block; width: 100%; break-inside: avoid; margin: 0 0 1.25rem; }
+@media (min-width: 701px) and (max-width: 1100px) {
+  .about-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) { .about-skills-columns { columns: 1; } }
+
+/* Give the About biography and skill columns more room across wide screens. */
+.about-intro { max-width: 1760px; padding-inline: clamp(1.25rem, 3vw, 4rem); }
+@media (min-width: 1101px) {
+  .about-intro .about-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(2rem, 4vw, 5rem); }
+  .about-intro .about-text { max-width: 65ch; }
+}
