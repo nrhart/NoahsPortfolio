@@ -587,6 +587,65 @@
       </div>
     </div>
 
+    <!-- CineCaster / Game Cast Director — camera plugin -->
+    <div class="showcase-card tech-demo-card" id="cinecaster">
+      <div class="showcase-img">
+        <img src="../images/cinecaster/perspectives.png" alt="CineCaster camera interface showing first-person and third-person camera controls" loading="lazy" decoding="async" />
+      </div>
+      <div class="showcase-body">
+        <div class="showcase-meta">Unreal Engine 5 &bull; C++ Plugin &bull; Team Project</div>
+        <div class="showcase-title">CineCaster</div>
+        <div class="showcase-desc">
+          Also developed as Game Cast Director, CineCaster is a spectator and cinematic camera plugin
+          for capturing multiplayer gameplay. Operators can cycle between players, switch between
+          first-person, third-person, free-roam, and spectator modes, and return to bookmarked camera positions.
+        </div>
+        <div class="showcase-desc showcase-desc-full">
+          <h3>Camera Systems &amp; Architecture</h3>
+          <ul class="project-systems-list">
+            <li><strong>Reusable camera modes:</strong> <code>ACameraDirectorPawn</code> selects mode objects through a <code>TMap&lt;ECameraType, UCameraTypeBase*&gt;</code>. The shared <code>CameraTypeLifecycle</code> applies a profile, attaches the camera, and runs mode-specific behavior, using a Template Method structure to keep setup consistent.</li>
+            <li><strong>Designer-facing configuration:</strong> <code>UCameraTypeProfile</code> Data Assets expose spring-arm length, field of view, collision checks, and movement/look permissions, separating camera tuning from the behavior classes.</li>
+            <li><strong>Player selection &amp; input:</strong> Blueprint-callable <code>NextActor</code>, <code>PreviousActor</code>, and <code>SetCurrentActor</code> manage the active target. Enhanced Input actions select camera modes and record or navigate camera bookmarks.</li>
+            <li><strong>Camera bookmarks:</strong> <code>UCameraMomentRecorder</code> stores position, rotation, profile name, and timestamp in <code>FCameraBookmark</code> entries, broadcasts new bookmarks, and supports wraparound navigation between recorded viewpoints.</li>
+            <li><strong>Preview interface:</strong> scene captures and render targets feed a UMG preview widget. Selecting a preview provides a camera transform that the director pawn can move to for shot setup.</li>
+          </ul>
+          <h3>Plugin Demonstrations</h3>
+          <p>These clips are taken from the repository's original GIF demonstrations.</p>
+          <div class="technical-media">
+            <figure>
+              <video controls playsinline muted loop data-autoplay preload="none" poster="../images/cinecaster/spectator.png" aria-label="CineCaster Spectator Mode demonstration">
+                <source src="../videos/cinecaster/spectator.mp4" type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+              <figcaption><strong>Spectator Mode:</strong> Switching to spectator viewpoints for gameplay coverage.</figcaption>
+            </figure>
+            <figure>
+              <video controls playsinline muted loop data-autoplay preload="none" poster="../images/cinecaster/player-switch.png" aria-label="CineCaster Player Switching demonstration">
+                <source src="../videos/cinecaster/player-switch.mp4" type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+              <figcaption><strong>Player Switching:</strong> Cycling between player targets through the camera interface.</figcaption>
+            </figure>
+            <figure>
+              <video controls playsinline muted loop data-autoplay preload="none" poster="../images/cinecaster/perspectives.png" aria-label="CineCaster First-Person &amp; Third-Person demonstration">
+                <source src="../videos/cinecaster/perspectives.mp4" type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+              <figcaption><strong>First-Person &amp; Third-Person:</strong> Changing perspectives while following the selected player.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="tag-list">
+          <span class="tag">Unreal Engine 5</span><span class="tag">C++</span>
+          <span class="tag">Camera Systems</span><span class="tag">Data Assets</span>
+          <span class="tag">Blueprint Tools</span><span class="tag">Technical Demo</span>
+        </div>
+        <div class="showcase-links">
+          <a href="https://github.com/DivithN/Unreal-Camera-Plugin" target="_blank" rel="noopener" class="btn btn-primary">View Repository &#8599;</a>
+        </div>
+      </div>
+    </div>
+
     <!-- Fast Food Frenzy -->
     <div class="showcase-card">
       <div class="showcase-img">
@@ -681,7 +740,7 @@
   </footer>
 </div>
 
-<script src="../js/main.js?v=writeups-anchor-9"></script>
+<script src="../js/main.js?v=cinecaster-autoplay-17"></script>
 <script src="../js/technical-writeups.js?v=no-rail-reports-3"></script>
 </body>
 </html>

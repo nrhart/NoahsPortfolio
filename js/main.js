@@ -365,16 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.setAttribute('role', 'dialog');
       overlay.setAttribute('aria-modal', 'true');
 
-      socials?.querySelectorAll('a').forEach(link => {
-      const label = link.getAttribute('aria-label') || link.title;
-      if (!label || link.querySelector('.nav-resume-label')) return;
-      link.setAttribute('aria-label', label);
-      const caption = document.createElement('span');
-      caption.className = 'nav-resume-label';
-      caption.textContent = label;
-      link.append(caption);
-    });
-    const panel = document.createElement('div');
+      const panel = document.createElement('div');
       panel.className = 'modal-panel';
 
       if (imgEl)  panel.appendChild(imgEl.cloneNode(true));
@@ -396,11 +387,24 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.appendChild(overlay);
       document.body.style.overflow = 'hidden';
 
+      // Start silent, looping demos only inside the expanded project.
+      const autoplayDemos = panel.querySelectorAll('video[data-autoplay]');
+      autoplayDemos.forEach(video => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.preload = 'metadata';
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          video.autoplay = true;
+          video.play().catch(() => {}); // Native controls remain available if autoplay is blocked.
+        }
+      });
+
       // Double rAF ensures transition plays from initial state
       requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
       closeBtn.focus();
 
       const close = () => {
+        autoplayDemos.forEach(video => video.pause());
         overlay.classList.remove('open');
         overlay.addEventListener('transitionend', () => {
           overlay.remove();
