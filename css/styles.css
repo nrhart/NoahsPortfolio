@@ -2489,3 +2489,9 @@ html.snap-page .page {
 
 .writeups-note-anchor { position: absolute; z-index: 1001; pointer-events: none; }
 .writeups-note-anchor > .writeups-note { pointer-events: auto; }
+
+.about-skill-group + .about-skill-group { margin-top: 1.25rem; }
+.about-skill-group h4 { color: var(--text-secondary); font-size: 0.85rem; font-weight: 700; }
+.about-skill-group .tag-list { margin-top: 0.55rem; }
+.about-skill-group .tag { max-width: 100%; overflow-wrap: anywhere; }
+.contact-brand-icon { display: block; width: 18px; height: 18px; flex-shrink: 0; }
