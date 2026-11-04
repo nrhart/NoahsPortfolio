@@ -2453,3 +2453,29 @@ html.snap-page .page {
   .nav-links > .nav-writeups > .writeups-note > span { transform: translateX(-36px); }
   .writeups-note svg { top: -16px; }
 }
+
+@keyframes landingScrollPeek {
+  0%, 100% { transform: translateY(0); }
+  28% { transform: translateY(-64px); }
+  46% { transform: translateY(-64px); }
+  66% { transform: translateY(0); }
+  80% { transform: translateY(-22px); }
+  91% { transform: translateY(0); }
+  96% { transform: translateY(-5px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html.snap-page .page.scroll-peek { animation: landingScrollPeek 1.8s cubic-bezier(0.4, 0, 0.2, 1) both; }
+}
+
+/* Readable labels beneath all header icons. */
+.nav-socials a { flex-direction: column; gap: 0.2rem; width: auto; min-width: 44px; padding-inline: 0.25rem; line-height: 1; }
+.nav-socials a svg { flex-shrink: 0; }
+
+/* A deliberate-play trailer remains available on tablets and phones. */
+.hero-trailer { transform: none; }
+.hero-trailer:hover { transform: none; }
+.hero-trailer video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
+.hero-trailer-caption { display: block; padding: 0.85rem 1rem; font-size: 0.75rem; font-weight: 700; color: var(--accent-bright); background: var(--bg-card); }
+.hero-trailer-caption:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: -3px; }
+
+.nav-itch-icon { display: block; width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; filter: grayscale(1) invert(1) sepia(1) saturate(4) hue-rotate(225deg) brightness(1.2); mix-blend-mode: screen; }

@@ -8,6 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (navigation) {
     const links = navigation.querySelector('.nav-links');
     const socials = navigation.querySelector('.nav-socials');
+    socials?.querySelectorAll('a').forEach(link => {
+      const label = link.getAttribute('aria-label') || link.title;
+      if (!label || link.querySelector('.nav-resume-label')) return;
+      link.setAttribute('aria-label', label);
+      const caption = document.createElement('span');
+      caption.className = 'nav-resume-label';
+      caption.textContent = label;
+      link.append(caption);
+    });
     const panel = document.createElement('div');
     panel.className = 'nav-panel';
     panel.id = 'site-navigation';
@@ -64,6 +73,38 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     backgroundDisabled.addEventListener('change', updateBackgroundVideo);
     updateBackgroundVideo();
+  }
+
+  // Three scroll hints: five seconds after full load, then ten seconds apart.
+  const landingPage = document.querySelector('html.snap-page .page');
+  if (landingPage) {
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const hintTimers = [];
+    let interacted = false;
+    const stopHint = () => {
+      interacted = true;
+      hintTimers.forEach(clearTimeout);
+      landingPage.classList.remove('scroll-peek');
+    };
+    for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
+      window.addEventListener(event, stopHint, { passive: true, once: true });
+    }
+    const scheduleHints = () => {
+      for (const delay of [5000, 15000, 25000]) {
+        hintTimers.push(setTimeout(() => {
+          if (interacted || motionPreference.matches || document.hidden || window.scrollY > 8 ||
+              document.documentElement.scrollHeight <= window.innerHeight ||
+              document.querySelector('.modal-overlay, nav.mobile-open')) return;
+          landingPage.classList.add('scroll-peek');
+        }, delay));
+      }
+    };
+    if (document.readyState === 'complete') scheduleHints();
+    else window.addEventListener('load', scheduleHints, { once: true });
+    landingPage.addEventListener('animationend', event => {
+      if (event.animationName === 'landingScrollPeek') landingPage.classList.remove('scroll-peek');
+    });
+    motionPreference.addEventListener('change', stopHint);
   }
 
   // ── Dropdown toggle ──────────────────────
@@ -279,7 +320,16 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.setAttribute('role', 'dialog');
       overlay.setAttribute('aria-modal', 'true');
 
-      const panel = document.createElement('div');
+      socials?.querySelectorAll('a').forEach(link => {
+      const label = link.getAttribute('aria-label') || link.title;
+      if (!label || link.querySelector('.nav-resume-label')) return;
+      link.setAttribute('aria-label', label);
+      const caption = document.createElement('span');
+      caption.className = 'nav-resume-label';
+      caption.textContent = label;
+      link.append(caption);
+    });
+    const panel = document.createElement('div');
       panel.className = 'modal-panel';
 
       if (imgEl)  panel.appendChild(imgEl.cloneNode(true));
