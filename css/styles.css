@@ -2479,3 +2479,8 @@ html.snap-page .page {
 .hero-trailer-caption:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: -3px; }
 
 .nav-itch-icon { display: block; width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; filter: grayscale(1) invert(1) sepia(1) saturate(4) hue-rotate(225deg) brightness(1.2); mix-blend-mode: screen; }
+
+/* Repository links stay visible while their source is migrated to GitHub. */
+.repository-wip { cursor: default; opacity: 0.75; flex-wrap: wrap; gap: 0.35rem; }
+.repository-wip-note { font-size: 0.75em; font-weight: 400; }
+.repository-wip:hover { transform: none; color: var(--text-secondary); background: transparent; border-color: var(--border); }
