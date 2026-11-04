@@ -2391,7 +2391,7 @@ html.snap-page .page {
   font-display: swap;
 }
 /* A handwritten margin note leading into the technical work. */
-.nav-links > .nav-writeups > .writeups-note {
+:is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note {
   position: absolute; top: calc(100% + 2.5rem); right: 2.7rem;
   display: block; width: 220px; padding: 0.2rem; border-radius: 4px;
   font-family: 'Caveat', 'Segoe Print', cursive;
@@ -2404,10 +2404,10 @@ html.snap-page .page {
   fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
 }
 .writeups-note .sketch-echo { opacity: 0.4; stroke-width: 1; }
-.nav-links > .nav-writeups > .writeups-note:hover { color: var(--accent-yellow); background: transparent; }
+:is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note:hover { color: var(--accent-yellow); background: transparent; }
 .writeups-note:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 5px; }
 @media (max-width: 850px) {
-  .nav-panel .nav-links > .nav-writeups > .writeups-note {
+  .nav-panel :is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note {
     position: relative; top: auto; right: auto; width: auto; min-height: 44px;
     margin: 0 0 0.35rem 1rem; padding: 0.4rem 0.75rem 0.4rem 2rem;
     font-size: 1.45rem; text-align: left; transform: rotate(-3deg); white-space: normal;
@@ -2417,40 +2417,40 @@ html.snap-page .page {
 }
 
 /* Compact yellow note on the opposite side of the sketched arrow. */
-.nav-links > .nav-writeups > .writeups-note {
+:is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note {
   right: auto; left: calc(100% + 0.5rem); top: calc(100% + 1.8rem);
   width: 180px; font-size: 1.3rem; text-align: left;
   color: var(--accent-yellow); transform: rotate(5deg);
 }
 .writeups-note svg { left: -64px; right: auto; top: -20px; width: 64px; height: 58px; transform: scaleX(-1); }
-.nav-links > .nav-writeups > .writeups-note:hover { color: #ffe58a; }
+:is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note:hover { color: #ffe58a; }
 @media (max-width: 850px) {
-  .nav-panel .nav-links > .nav-writeups > .writeups-note {
+  .nav-panel :is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note {
     left: auto; top: auto; width: auto; font-size: 1.25rem;
     padding-left: 2rem; transform: rotate(-3deg); color: var(--accent-yellow);
   }
   .writeups-note svg { width: 30px; height: 35px; left: -0.25rem; right: auto; top: 0; }
 }
 
-.nav-links > .nav-writeups > .writeups-note,
-.nav-panel .nav-links > .nav-writeups > .writeups-note { color: #dfca78; }
-.nav-links > .nav-writeups > .writeups-note:hover { color: #efdc95; }
+:is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note,
+.nav-panel :is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note { color: #dfca78; }
+:is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note:hover { color: #efdc95; }
 
 @media (min-width: 851px) {
-  .nav-links > .nav-writeups > .writeups-note { width: 220px; }
+  :is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note { width: 220px; }
   .writeups-note svg { left: -132px; width: 132px; transform: scaleX(-1) rotate(-5deg); }
 }
 
 @media (min-width: 851px) {
-  .nav-links > .nav-writeups > .writeups-note > span { display: block; transform: translateX(-22px); }
+  :is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note > span { display: block; transform: translateX(-22px); }
 }
 
 @media (min-width: 851px) {
-  .nav-links > .nav-writeups > .writeups-note { left: calc(100% - 0.5rem); }
+  :is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note { left: calc(100% - 0.5rem); }
 }
 
 @media (min-width: 851px) {
-  .nav-links > .nav-writeups > .writeups-note > span { transform: translateX(-36px); }
+  :is(.nav-links > .nav-writeups, .writeups-note-anchor) > .writeups-note > span { transform: translateX(-36px); }
   .writeups-note svg { top: -16px; }
 }
 
@@ -2484,3 +2484,8 @@ html.snap-page .page {
 .repository-wip { cursor: default; opacity: 0.75; flex-wrap: wrap; gap: 0.35rem; }
 .repository-wip-note { font-size: 0.75em; font-weight: 400; }
 .repository-wip:hover { transform: none; color: var(--text-secondary); background: transparent; border-color: var(--border); }
+
+.writeups-note[hidden] { display: none !important; }
+
+.writeups-note-anchor { position: absolute; z-index: 1001; pointer-events: none; }
+.writeups-note-anchor > .writeups-note { pointer-events: auto; }

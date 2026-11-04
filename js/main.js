@@ -3,6 +3,26 @@
    ========================================= */
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Retire the handwritten prompt once this browser has visited the writeups.
+  const writeupsVisitedKey = 'portfolio:technical-writeups-visited';
+  const refreshWriteupsNote = () => {
+    try {
+      if (window.location.pathname.endsWith('/technical-writeups.html')) {
+        localStorage.setItem(writeupsVisitedKey, 'true');
+      }
+      if (localStorage.getItem(writeupsVisitedKey) === 'true') {
+        document.querySelectorAll('.writeups-note').forEach(note => { note.hidden = true; });
+      }
+    } catch {
+      // Navigation remains available when browser storage is restricted.
+    }
+  };
+  refreshWriteupsNote();
+  window.addEventListener('pageshow', refreshWriteupsNote);
+  window.addEventListener('storage', event => {
+    if (event.key === writeupsVisitedKey) refreshWriteupsNote();
+  });
+
   // Shared mobile navigation keeps every destination and contact link accessible.
   const navigation = document.querySelector('nav');
   if (navigation) {
@@ -50,6 +70,31 @@ document.addEventListener('DOMContentLoaded', () => {
     navigation.addEventListener('focusout', () => {
       requestAnimationFrame(() => { if (!navigation.contains(document.activeElement)) setMenu(false); });
     });
+  }
+
+  // Anchor the desktop note to the document, outside the fixed header.
+  const writeupsNote = document.querySelector('.writeups-note');
+  const writeupsNoteHome = writeupsNote?.parentElement;
+  if (writeupsNote && writeupsNoteHome) {
+    const anchor = document.createElement('div');
+    anchor.className = 'writeups-note-anchor';
+    const positionWriteupsNote = () => {
+      if (window.matchMedia('(max-width: 850px)').matches) {
+        writeupsNoteHome.append(writeupsNote);
+        anchor.remove();
+        return;
+      }
+      const origin = writeupsNoteHome.getBoundingClientRect();
+      anchor.style.left = `${origin.left + window.scrollX}px`;
+      anchor.style.top = `${origin.top}px`;
+      anchor.style.width = `${origin.width}px`;
+      anchor.style.height = `${origin.height}px`;
+      document.body.append(anchor);
+      anchor.append(writeupsNote);
+    };
+    positionWriteupsNote();
+    window.addEventListener('resize', positionWriteupsNote);
+    document.fonts.ready.then(positionWriteupsNote);
   }
 
   // Re-evaluate playback when the window size or motion preference changes.
